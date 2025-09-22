@@ -1,0 +1,11 @@
+dev:
+  wait: 10
+  pull_frequency: 0.1
+  screen_size: "window-size=1920x1080"
+  maximized_screen: "--start-maximized"
+  headless: '--headless'
+  basic_auth: "the-internet.herokuapp.com/basic_auth"
+  alert_basic: "https://the-internet.herokuapp.com/javascript_alerts"
+
+
+
