@@ -13,5 +13,5 @@ def test_auth(browser, login, password):
     driver = AuthPage(browser)
     link = config.get('basic_auth')
     driver.get_url(f'https://{login}:{password}@{link}')
-    actual  =  driver.wait_unique()
+    actual  =  driver.wait_unique().text.lower().strip()
     assert EXCEPT in actual, f'expected: {EXCEPT} to be in {actual}'
