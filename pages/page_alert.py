@@ -24,7 +24,7 @@ class PageAlert(BasePage):
 
     def wait_unique(self):
         return self.unique_elem.elem_text()
- 
+
     def click_btn_alert(self):
         return self.alert_btn_elem.btn_click()
 
