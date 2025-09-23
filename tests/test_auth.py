@@ -1,6 +1,6 @@
 import pytest
 
-from pages.auth_page import AuthPage
+from pages.page_auth import AuthPage
 from utils.config_reader import ConfigReader
 from utils.env import Env
 

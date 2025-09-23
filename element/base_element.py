@@ -22,7 +22,7 @@ class BaseElement:
             Logger.info('Element text is {}'.format(self.description))
             return (WebDriverWait(self.driver, self.wait)).until(EC.presence_of_element_located(self.locator))
         except TimeoutException:
-            Logger.error('Element text is not found')
+            return Logger.error('Element text is not found')
 
     def elem_fast_wait(self):
         try:
@@ -30,14 +30,14 @@ class BaseElement:
             return ((WebDriverWait(self.driver, self.wait, self.fast_wait))
                     .until(EC.presence_of_element_located(self.locator)))
         except TimeoutException:
-            Logger.error('Element fast wait is not found')
+            return Logger.error('Element fast wait is not found')
 
     def elem_visible(self):
         try:
             Logger.info(f'self.description: {self.description}')
             return WebDriverWait(self.driver, self.wait).until(EC.visibility_of_element_located(self.locator))
         except TimeoutException:
-            Logger.error(f'{self.description} is not found')
+            return Logger.error(f'{self.description} is not found')
 
     def btn_click(self):
         try:
@@ -45,4 +45,12 @@ class BaseElement:
             return (WebDriverWait(self.driver, self.wait)
                     .until(EC.element_to_be_clickable(self.locator)).click())
         except TimeoutException:
-            Logger.error(f'{self.description} is not found')
+            return Logger.error(f'{self.description} is not found')
+
+    def js_click(self):
+        try:
+            Logger.info(f'self.description: {self.description}')
+            el = WebDriverWait(self.driver, self.wait).until(EC.presence_of_element_located(self.locator))
+            return self.driver.execute_script("arguments[0].click();", el)
+        except TimeoutException:
+            return Logger.error(f'{self.description} is not found')
