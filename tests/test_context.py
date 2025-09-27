@@ -14,3 +14,4 @@ def test_context(browser):
     browser.switch_alert()
     actual_alert = browser.get_text_alert().lower().strip('')
     assert EXCEPTED_ALERT in actual_alert, f'Expected: {EXCEPTED_ALERT}, not actual actual: {actual_alert}'
+    browser.confirm_alert()
