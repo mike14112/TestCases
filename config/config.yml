@@ -6,6 +6,7 @@ dev:
   headless: '--headless'
   basic_auth: "the-internet.herokuapp.com/basic_auth"
   alert_basic: "https://the-internet.herokuapp.com/javascript_alerts"
+  context_url: 'https://the-internet.herokuapp.com/context_menu'
 
 
 
