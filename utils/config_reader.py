@@ -1,10 +1,11 @@
-import yaml
+import os
 
+import yaml
 from utils.env import Env
 
 
 class ConfigReader:
-    PATH_YAML = 'config/config.yml'
+    PATH_YAML =  os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config", "config.yml")
 
     def __init__(self, config_path=PATH_YAML, env=Env.DEV.value):
         self.config_path = config_path

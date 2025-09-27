@@ -15,3 +15,5 @@ class AuthPage(BasePage):
 
     def wait_unique(self):
         return self.unique_elem.elem_text()
+
+

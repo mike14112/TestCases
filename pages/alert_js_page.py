@@ -1,10 +1,11 @@
 from selenium.webdriver.common.by import By
 
-from element.base_element import BaseElement
+from element.button import Button
+from element.label import Label
 from pages.base_page import BasePage
 
 
-class PageAlert(BasePage):
+class AlertJsPage(BasePage):
     LOQ_UNIQUE_ELEM = (By.XPATH, "//*[contains(text(), 'Here are some examples of different "
                                  "JavaScript alerts which can be troublesome for automation')]")
     LOQ_ALERT = (By.XPATH, "//*[contains(@onclick, 'jsAlert()')]")
@@ -16,20 +17,20 @@ class PageAlert(BasePage):
         super().__init__(driver)
         self.driver = driver
 
-        self.unique_elem = BaseElement(driver=self.driver,
-                                       locator=self.LOQ_UNIQUE_ELEM, description="unique elem")
-        self.alert_btn_elem = BaseElement(driver=self.driver, locator=self.LOQ_ALERT, description="btn -> alert")
-        self.btn_confirm_elem = BaseElement(driver=self.driver, locator=self.LOQ_CONFIRM, description="btn -> confirm")
-        self.alert_res = BaseElement(driver=self.driver, locator=self.LOQ_RESULT, description="Alert -> result")
+        self.unique_elem = Label(driver=self.driver,
+                                 locator=self.LOQ_UNIQUE_ELEM, description="unique elem")
+        self.alert_btn_elem = Button(driver=self.driver, locator=self.LOQ_ALERT, description="btn -> alert")
+        self.btn_confirm_elem = Button(driver=self.driver, locator=self.LOQ_CONFIRM, description="btn -> confirm")
+        self.alert_res = Label(driver=self.driver, locator=self.LOQ_RESULT, description="Alert -> result")
 
     def wait_unique(self):
-        return self.unique_elem.elem_text()
- 
+        return self.unique_elem.elem_visible()
+
     def click_btn_alert(self):
-        return self.alert_btn_elem.btn_click()
+        return self.alert_btn_elem.js_click()
 
     def result_wait(self):
         return self.alert_res.elem_fast_wait()
 
     def btn_confirm(self):
-        return self.btn_confirm_elem.btn_click()
+        return self.btn_confirm_elem.js_click()

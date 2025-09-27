@@ -41,3 +41,4 @@ class BasePage:
             self.driver.switch_to.alert().dismiss()
         except TimeoutException:
             Logger.error(f'alert not found')
+
