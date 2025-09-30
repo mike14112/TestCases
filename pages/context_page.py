@@ -1,12 +1,10 @@
-from selenium.webdriver.common.by import By
-
-from element.button import Button
-from element.label import Label
+from elements.button import Button
+from elements.label import Label
 
 
 class ContextPage:
-    LOQ_UNIQUE_ELEM = (By.XPATH, "//*[@id='content']//h3")
-    lOQ_AREA_ELEM = (By.ID, "hot-spot")
+    LOQ_UNIQUE_ELEM = "//*[@id='content']//h3"
+    lOQ_AREA_ELEM = "hot-spot"
 
     def __init__(self, driver):
         self.driver = driver

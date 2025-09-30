@@ -8,6 +8,7 @@ dev:
   alert_basic: "https://the-internet.herokuapp.com/javascript_alerts"
   context_url: 'https://the-internet.herokuapp.com/context_menu'
   slider_url: 'https://the-internet.herokuapp.com/horizontal_slider'
+  hovers_url: 'https://the-internet.herokuapp.com/hovers'
 
 
 

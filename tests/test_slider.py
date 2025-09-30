@@ -8,4 +8,5 @@ def test_slider(browser):
     browser.get(config.get('slider_url'))
     page.wait_element()
     page.move_to_slider()
+    input('enter any key to continue')
 

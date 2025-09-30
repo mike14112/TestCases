@@ -61,8 +61,18 @@ class BaseElement:
     def context_click(self):
         try:
             Logger.info(f'self.description: {self.description}')
-            elemen = WebDriverWait(self.driver, self.wait).until(EC.presence_of_element_located(self.locator))
-            return ActionChains(self.driver).context_click(elemen).perform()
+            element = WebDriverWait(self.driver, self.wait).until(EC.presence_of_element_located(self.locator))
+            return ActionChains(self.driver).context_click(element).perform()
+        except TimeoutException:
+            Logger.error(f'{self.description} is not found')
+            raise
+
+    def move_element(self):
+        try:
+            Logger.info(f'self.description: {self.description}')
+            element = WebDriverWait(self.driver, self.wait).until(EC.presence_of_element_located(self.locator))
+            return (ActionChains(self.driver).click_and_hold(element)
+                    .move_by_offset(yoffset=5, xoffset=0).release().perform())
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
             raise

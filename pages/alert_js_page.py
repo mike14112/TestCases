@@ -1,17 +1,15 @@
-from selenium.webdriver.common.by import By
-
-from element.button import Button
-from element.label import Label
+from elements.button import Button
+from elements.label import Label
 from pages.base_page import BasePage
 
 
 class AlertJsPage(BasePage):
-    LOQ_UNIQUE_ELEM = (By.XPATH, "//*[contains(text(), 'Here are some examples of different "
-                                 "JavaScript alerts which can be troublesome for automation')]")
-    LOQ_ALERT = (By.XPATH, "//*[contains(@onclick, 'jsAlert()')]")
-    LOQ_CONFIRM = (By.XPATH, "//*[contains(@onclick, 'jsConfirm()')]")
-    LOQ_PROMPT = (By.XPATH, "//*[contains(@onclick, 'jsPrompt()')]")
-    LOQ_RESULT = (By.ID, "result")
+    LOQ_UNIQUE_ELEM = "//*[contains(text(), 'Here are some examples of different " \
+                      "JavaScript alerts which can be troublesome for automation')]"
+    LOQ_ALERT = "//*[contains(@onclick, 'jsAlert()')]"
+    LOQ_CONFIRM = "//*[contains(@onclick, 'jsConfirm()')]"
+    LOQ_PROMPT = "//*[contains(@onclick, 'jsPrompt()')]"
+    LOQ_RESULT = "result"
 
     def __init__(self, driver):
         super().__init__(driver)
