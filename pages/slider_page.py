@@ -1,5 +1,3 @@
-from elements.action_chains_element import ActionChainsElement
-
 from elements.button import Button
 from elements.label import Label
 from pages.base_page import BasePage
@@ -16,10 +14,10 @@ class SliderPage(BasePage):
         self.unique_element = Label(driver=self.driver, locator=self.LOQ_UNIQUE_ELEM,
                                     description='open url -> main_elem')
         self.slider_element = Button(driver=self.driver, locator=self.LOQ_SLIDER,
-                                                  description='click input range to 5')
+                                     description='click input range to 5')
 
-    def wait_element(self):
-        return self.unique_element.elem_visible()
+    def wait_unique(self):
+        return self.unique_element.elem_visible().text.lower().strip()
 
     def move_to_slider(self):
-        return self.slider_element.move_to_slider()
+        return self.slider_element.move_element()

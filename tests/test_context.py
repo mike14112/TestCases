@@ -8,7 +8,7 @@ EXCEPTED_ALERT = 'You selected a context menu'.lower().strip('')
 def test_context(browser):
     page = ContextPage(browser.driver)
     browser.get(config.get('context_url'))
-    actual = page.wait_elem().text.lower().strip('')
+    actual = page.wait_unique()
     assert EXCEPTED in actual, f'Expected: {EXCEPTED}, not actual actual: {actual}'
     page.context_click()
     browser.switch_alert()

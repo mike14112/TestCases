@@ -1,6 +1,6 @@
 import pytest
 
-from pages.auth_page import AuthPage
+from pages.page_auth  import AuthPage
 from utils.config_reader import ConfigReader
 from utils.env import Env
 config = ConfigReader(env=Env.DEV.value)
@@ -10,8 +10,8 @@ EXCEPT = 'Congratulations! you must have the proper credentials.'.lower().strip(
     ['admin', 'admin'],
 ])
 def test_auth(browser, login, password):
-    driver = AuthPage(browser)
+    page = AuthPage(browser.driver)
     link = config.get('basic_auth')
-    driver.get_url(f'https://{login}:{password}@{link}')
-    actual  =  driver.wait_unique().text.lower().strip()
+    browser.get(f'https://{login}:{password}@{link}')
+    actual  =  page.wait_unique()
     assert EXCEPT in actual, f'expected: {EXCEPT} to be in {actual}'

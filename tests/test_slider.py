@@ -6,7 +6,6 @@ config = ConfigReader(env=Env.DEV.value)
 def test_slider(browser):
     page = SliderPage(browser.driver)
     browser.get(config.get('slider_url'))
-    page.wait_element()
+    page.wait_unique()
     page.move_to_slider()
-    input('enter any key to continue')
 

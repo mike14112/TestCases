@@ -1,5 +1,6 @@
 from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -17,6 +18,14 @@ class BaseElement:
         self.description = description
         self.wait = config.get('wait')
         self.fast_wait = config.get('pull_frequency')
+
+        if isinstance(locator, str):
+            if '/' in  locator:
+                self.locator = (By.XPATH, locator)
+            else:
+                self.locator = (By.ID, locator)
+        else:
+            self.locator = self.locator
 
     def elem_fast_wait(self):
         try:
@@ -40,6 +49,13 @@ class BaseElement:
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
         raise
+
+    def get_text(self):
+        try:
+            Logger.info(f'self.description: {self.description}')
+            return WebDriverWait(self.driver, self.wait).until(EC.presence_of_element_located(self.locator)).text
+        except TimeoutException:
+            Logger.error(f'{self.description} is not found')
 
     def btn_click(self):
         try:
@@ -76,3 +92,12 @@ class BaseElement:
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
             raise
+
+    def is_exists(self):
+        try:
+            Logger.info(f'self.description: {self.description}')
+            self.prefer_visible()
+            return True
+        except TimeoutException:
+            Logger.error(f'{self.description} is not found')
+            return False
