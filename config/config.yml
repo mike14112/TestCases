@@ -9,6 +9,7 @@ dev:
   context_url: 'https://the-internet.herokuapp.com/context_menu'
   slider_url: 'https://the-internet.herokuapp.com/horizontal_slider'
   hovers_url: 'https://the-internet.herokuapp.com/hovers'
+  handlers_url: 'https://the-internet.herokuapp.com/windows'
 
 
 
