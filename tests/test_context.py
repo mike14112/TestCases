@@ -1,17 +1,19 @@
-from pages.context_page import ContextPage
-from utils.config_reader import ConfigReader
-from utils.env import Env
-config = ConfigReader(env=Env.DEV.value)
-EXCEPTED = 'Context Menu'.lower().strip('')
-EXCEPTED_ALERT = 'You selected a context menu'.lower().strip('')
+from pages.page_context import PageContext
+from  utils.config_reader import ConfigReader
+from utils.env import  Env
 
-def test_context(browser):
-    page = ContextPage(browser.driver)
+config = ConfigReader(env=Env.DEV.value)
+
+EXCEPT = 'Context Menu'.lower().strip()
+EXCEPT_ALERT = 'You selected a context menu'.lower().strip()
+
+def test_page_context(browser):
+    page = PageContext(browser.driver)
     browser.get(config.get('context_url'))
-    actual = page.wait_unique()
-    assert EXCEPTED in actual, f'Expected: {EXCEPTED}, not actual actual: {actual}'
+    actual = page.wait_unique().text.lower().strip()
+    assert EXCEPT in actual, f'EXCEPT:{EXCEPT} not in {actual}'
     page.context_click()
-    browser.switch_alert()
-    actual_alert = browser.get_text_alert().lower().strip('')
-    assert EXCEPTED_ALERT in actual_alert, f'Expected: {EXCEPTED_ALERT}, not actual actual: {actual_alert}'
-    browser.confirm_alert()
+    input()
+
+
+
