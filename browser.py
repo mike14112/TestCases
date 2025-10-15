@@ -1,13 +1,14 @@
-from selenium.webdriver.chrome import webdriver
-from logger.logger import Logger
-from browser_factory import BrowserFactory
-from selenium.webdriver.support.wait import WebDriverWait
-from utils.config_reader import ConfigReader
-from utils.env import Env
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+
+from browser_factory import BrowserFactory
+from logger.logger import Logger
+from utils.config_reader import ConfigReader
+from utils.env import Env
 
 config = ConfigReader(env=Env.DEV.value)
+
 
 class Browser:
     def __init__(self):
@@ -47,7 +48,7 @@ class Browser:
 
     def switch_frame(self, frame):
         Logger.info("Switch frame")
-        self.driver.switch_to.frame(frame)
+        return self.driver.switch_to.frame(frame)
 
     def switch_to_default_content(self):
         Logger.info("Switch to default content")

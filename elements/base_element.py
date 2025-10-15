@@ -92,6 +92,14 @@ class BaseElement:
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
             raise
+    def wait_for_frame(self):
+        try:
+            Logger.info(f'self.description: {self.description}')
+            frame = WebDriverWait(self.driver, self.wait).until(EC.frame_to_be_available_and_switch_to_it(self.locator))
+            return frame
+        except TimeoutException:
+            Logger.error(f'{self.description} is not found')
+            raise
 
     def is_exists(self):
         try:

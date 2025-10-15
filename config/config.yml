@@ -10,6 +10,6 @@ dev:
   slider_url: 'https://the-internet.herokuapp.com/horizontal_slider'
   hovers_url: 'https://the-internet.herokuapp.com/hovers'
   handlers_url: 'https://the-internet.herokuapp.com/windows'
-
+  iframe_url: https://demoqa.com/frames
 
 
