@@ -8,7 +8,6 @@ def test_dynamic(browser):
     page = DynamicPage(browser)
     browser.get(config_reader.get('dynamic_url'))
     page.get_unique_element()
-    (page.match_img
-     + ())
+    page.match_img()
 
 
