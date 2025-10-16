@@ -20,7 +20,7 @@ class BaseElement:
         self.fast_wait = config.get('pull_frequency')
 
         if isinstance(locator, str):
-            if '/' in  locator:
+            if '/' in locator:
                 self.locator = (By.XPATH, locator)
             else:
                 self.locator = (By.ID, locator)
@@ -33,6 +33,7 @@ class BaseElement:
             return WebDriverWait(self.driver, self.fast_wait).until(EC.presence_of_element_located(self.locator))
         except TimeoutException:
             Logger.error('Element fast wait is not found')
+            raise
 
     def elem_visible(self):
         try:
@@ -56,6 +57,7 @@ class BaseElement:
             return WebDriverWait(self.driver, self.wait).until(EC.presence_of_element_located(self.locator)).text
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
+        raise
 
     def btn_click(self):
         try:
@@ -72,7 +74,7 @@ class BaseElement:
             return self.driver.execute_script('return arguments[0].click();', element)
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
-            raise
+        raise
 
     def context_click(self):
         try:
@@ -81,7 +83,7 @@ class BaseElement:
             return ActionChains(self.driver).context_click(element).perform()
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
-            raise
+        raise
 
     def move_element(self):
         try:
@@ -91,7 +93,8 @@ class BaseElement:
                     .move_by_offset(yoffset=5, xoffset=0).release().perform())
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
-            raise
+        raise
+
     def wait_for_frame(self):
         try:
             Logger.info(f'self.description: {self.description}')
@@ -99,7 +102,16 @@ class BaseElement:
             return frame
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
-            raise
+        raise
+
+    def get_attribute(self, attribute):
+        try:
+            Logger.info(f'self.description: {self.description}')
+            return WebDriverWait(self.driver, self.wait).until(
+                EC.presence_of_element_located(self.locator)).get_attribute(attribute)
+        except TimeoutException:
+            Logger.error(f'{self.description} is not found')
+        raise
 
     def is_exists(self):
         try:

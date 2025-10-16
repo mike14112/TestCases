@@ -23,3 +23,5 @@ class MultiWebElementsPage:
         else:
             self.index += 1
             return current_elem
+
+
