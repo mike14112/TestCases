@@ -12,5 +12,6 @@ dev:
   handlers_url: 'https://the-internet.herokuapp.com/windows'
   iframe_url: https://demoqa.com/frames
   dynamic_url: https://the-internet.herokuapp.com/dynamic_content
+  scroll_url: 'https://the-internet.herokuapp.com/infinite_scroll'
 
 
