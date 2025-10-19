@@ -13,5 +13,6 @@ dev:
   iframe_url: https://demoqa.com/frames
   dynamic_url: https://the-internet.herokuapp.com/dynamic_content
   scroll_url: 'https://the-internet.herokuapp.com/infinite_scroll'
+  upload_url: 'https://the-internet.herokuapp.com/upload'
 
 

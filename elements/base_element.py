@@ -1,9 +1,9 @@
 from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.keys import Keys
 
 from logger.logger import Logger
 from utils.config_reader import ConfigReader
@@ -104,6 +104,7 @@ class BaseElement:
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
         raise
+
     def wait_for_all_elems(self):
         try:
             Logger.info(f'self.description: {self.description}')
@@ -129,7 +130,6 @@ class BaseElement:
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
             raise
-
 
     def is_exists(self):
         try:
