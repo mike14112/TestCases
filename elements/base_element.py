@@ -18,7 +18,7 @@ class BaseElement:
         self.locator = locator
         self.description = description
         self.wait = config.get('wait')
-        self.fast_wait = config.get('pull_frequency')
+        self.fast_wait = config.get('fast_pull_frequency')
 
         if isinstance(locator, str):
             if '/' in locator:
