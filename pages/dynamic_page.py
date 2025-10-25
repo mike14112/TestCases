@@ -4,19 +4,19 @@ from pages.base_page import BasePage
 
 
 class DynamicPage(BasePage):
-    LOQ_UNIQUE_ELEM = "//*[contains(@class, 'example')]//h3"
-    LOQ_IMG_1 = "(//*[@id='content']//img)[1]"
-    LOQ_IMG_2 = "(//*[@id='content']//img)[1]"
-    LOQ_IMG_3 = "(//*[@id='content']//img)[1]"
+    LOC_UNIQUE_ELEM = "//*[contains(@class, 'example')]//h3"
+    LOC_IMG_1 = "(//*[@id='content']//img)[1]"
+    LOC_IMG_2 = "(//*[@id='content']//img)[1]"
+    LOC_IMG_3 = "(//*[@id='content']//img)[1]"
 
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
 
-        self.unique_elem = Label(self.driver.driver, self.LOQ_UNIQUE_ELEM, 'open url -> show page')
-        self.img1 = WebElement(self.driver.driver, self.LOQ_IMG_1, 'page show -> show img 1')
-        self.img2 = WebElement(self.driver.driver, self.LOQ_IMG_2, 'page show -> show img 2')
-        self.img3 = WebElement(self.driver.driver, self.LOQ_IMG_3, 'page show -> show img 3')
+        self.unique_elem = Label(self.driver.driver, self.LOC_UNIQUE_ELEM, 'open url -> show page')
+        self.img1 = WebElement(self.driver.driver, self.LOC_IMG_1, 'page show -> show img 1')
+        self.img2 = WebElement(self.driver.driver, self.LOC_IMG_2, 'page show -> show img 2')
+        self.img3 = WebElement(self.driver.driver, self.LOC_IMG_3, 'page show -> show img 3')
 
     def get_unique_element(self):
         return self.unique_elem.elem_visible()
