@@ -11,17 +11,17 @@ class AlertJsPage(BasePage):
     LOC_PROMPT = "//*[contains(@onclick, 'jsPrompt()')]"
     LOC_RESULT = "result"
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.browser = browser
 
-        self.unique_elem = Label(driver=self.driver,
+        self.unique_elem = Label(driver=self.browser.driver,
                                  locator=self.LOC_UNIQUE_ELEM, description="unique elem")
-        self.alert_btn_elem = Button(driver=self.driver, locator=self.LOC_ALERT, description="btn -> alert")
-        self.btn_confirm_elem = Button(driver=self.driver, locator=self.LOC_CONFIRM, description="btn -> confirm")
-        self.alert_res = Label(driver=self.driver, locator=self.LOC_RESULT, description="Alert -> result")
+        self.alert_btn_elem = Button(driver=self.browser.driver, locator=self.LOC_ALERT, description="btn -> alert")
+        self.btn_confirm_elem = Button(driver=self.browser.driver, locator=self.LOC_CONFIRM, description="btn -> confirm")
+        self.alert_res = Label(driver=self.browser.driver, locator=self.LOC_RESULT, description="Alert -> result")
 
-    def wait_unique(self):
+    def get_unique_elem(self):
         return self.unique_elem.elem_visible()
 
     def click_btn_alert(self):

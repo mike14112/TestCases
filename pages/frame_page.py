@@ -15,27 +15,29 @@ class IFramePage(BasePage):
     LOC_FRAME_UNIQUE_PAGE = "//*[@id='framesWrapper']//h1"
     LOC_TEXT_FRAME = 'sampleHeading'
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
-
-        self.unique_main_page_elem = Label(self.driver, self.LOC_UNIQUE_ELEM, description='open browser -> unique elem')
-        self.btn_list_alerts = Button(self.driver, self.LOC_BTN_ALERT_LIST,
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.browser = browser
+        self.unique_main_page_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM,
+                                           description='open browser -> unique elem')
+        self.btn_list_alerts = Button(self.browser.driver, self.LOC_BTN_ALERT_LIST,
                                       description='click btn list frames -> show list alerts and frames')
-        self.btn_nested_frames = Button(self.driver, self.LOC_BTN_NESTED_FRAMES,
+        self.btn_nested_frames = Button(self.browser.driver, self.LOC_BTN_NESTED_FRAMES,
                                         description='click btn frames -> show nested frames')
-        self.unique_nested_frame_page = Label(self.driver, self.LOC_UNIQUE_ELEM_NESTED_FRAME,
+        self.unique_nested_frame_page = Label(self.browser.driver, self.LOC_UNIQUE_ELEM_NESTED_FRAME,
                                               description='click btn nested frames -> show nested page '
                                                           'frames text text ')
 
-        self.parent_frame_text = Label(self.driver, self.LOC_PARENT_FRAME_TEXT,
+        self.parent_frame_text = Label(self.browser.driver, self.LOC_PARENT_FRAME_TEXT,
                                        description='switch from parent frame to text parent frame')
-        self.child_frame_text = WebElement(self.driver, self.LOC_CHILD_FRAME_TEXT,
+        self.child_frame_text = WebElement(self.browser.driver, self.LOC_CHILD_FRAME_TEXT,
                                            description='switch to child frames -> child frame')
-        self.frame_elem = Button(self.driver, self.LOC_FRAME_ELEM, description='click frame elem -> page open frame')
+        self.frame_elem = Button(self.browser.driver, self.LOC_FRAME_ELEM,
+                                 description='click frame elem -> page open frame')
         self.unique_elem_frame_text = Label(self.driver, self.LOC_FRAME_UNIQUE_PAGE,
                                             description='click frame elem -> show unique elem page')
-        self.frame_text = Label(self.driver, self.LOC_TEXT_FRAME, description=' open  page frame -> show frame text')
+        self.frame_text = Label(self.browser.driver, self.LOC_TEXT_FRAME,
+                                description=' open  page frame -> show frame text')
 
     def get_unique_elem(self):
         return self.unique_main_page_elem.get_text().lower().strip()

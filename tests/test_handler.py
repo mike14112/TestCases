@@ -1,9 +1,11 @@
 from pages.handlers_page import PageHandler
 from utils.config_reader import ConfigReader
 from utils.env import Env
+
 EXCEPT_MAIN_PAGE = 'Opening a new window'.lower().strip()
 EXCEPT_WINDOW = 'new window'.lower().strip()
 config = ConfigReader(env=Env.DEV.value)
+
 
 def test_handler(browser):
     page = PageHandler(browser.driver)
@@ -28,10 +30,3 @@ def test_handler(browser):
     browser.switch_window(1)
     browser.close()
     browser.switch_window(0)
-
-
-
-
-
-
-

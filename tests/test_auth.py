@@ -10,7 +10,7 @@ EXCEPT = 'Congratulations! you must have the proper credentials.'.lower().strip(
     ['admin', 'admin'],
 ])
 def test_auth(browser, login, password):
-    page = AuthPage(browser.driver)
+    page = AuthPage(browser)
     link = config.get('basic_auth')
     browser.get(f'https://{login}:{password}@{link}')
     actual  =  page.wait_unique()

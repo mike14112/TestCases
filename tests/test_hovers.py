@@ -12,7 +12,7 @@ EXCEPTED_USER3_LINK = 'users/3'
 
 
 def test_hovers(browser):
-    page = HoversPage(browser.driver)
+    page = HoversPage(browser)
     browser.get(config.get('hovers_url'))
     page.wait_unique()
     page.hover_user(1)

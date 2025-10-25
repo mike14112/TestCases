@@ -7,13 +7,13 @@ class SliderPage(BasePage):
     LOC_UNIQUE_ELEM = "//*[@id='content']//h3"
     LOC_SLIDER = "//*[@type='range']"
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.browser = browser
 
-        self.unique_element = Label(driver=self.driver, locator=self.LOC_UNIQUE_ELEM,
+        self.unique_element = Label(driver=self.browser.driver, locator=self.LOC_UNIQUE_ELEM,
                                     description='open url -> main_elem')
-        self.slider_element = Button(driver=self.driver, locator=self.LOC_SLIDER,
+        self.slider_element = Button(driver=self.browser.driver, locator=self.LOC_SLIDER,
                                      description='click input range to 5')
 
     def wait_unique(self):

@@ -8,13 +8,13 @@ class PageHandler(BasePage):
     LOC_BTN_ELEM = "//*[@id='content']//a"
     LOC_ELEM_TEXT = '//*[contains(@class, "example")]'
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.browser = browser
 
-        self.unique_elem = Label(self.driver, self.LOC_UNIQUE_ELEM, description='get url -> open page')
-        self.btn_new_window = Button(self.driver, self.LOC_BTN_ELEM, description='btn new window -> open new window')
-        self.text_main_page = Label(self.driver, self.LOC_ELEM_TEXT, description='open page -> text main page')
+        self.unique_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM, description='get url -> open page')
+        self.btn_new_window = Button(self.browser.driver, self.LOC_BTN_ELEM, description='btn new window -> open new window')
+        self.text_main_page = Label(self.browser.driver, self.LOC_ELEM_TEXT, description='open page -> text main page')
 
     def wait_elem_unique(self):
         return self.unique_elem.get_text().strip().lower()

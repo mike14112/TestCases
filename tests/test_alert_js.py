@@ -11,7 +11,7 @@ EXCEPT_CONFIRM_RESULT = 'You clicked: Ok'.lower().strip()
 
 
 def test_alert(browser):
-    page = PageJsAlert(browser.driver)
+    page = PageJsAlert(browser)
     browser.get(config.get('alert_basic'))
     actual = page.wait_unique()
     assert EXCEPT in actual, f'EXCEPT{EXCEPT} is not in actual {actual}'

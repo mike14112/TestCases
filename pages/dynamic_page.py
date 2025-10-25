@@ -9,14 +9,14 @@ class DynamicPage(BasePage):
     LOC_IMG_2 = "(//*[@id='content']//img)[1]"
     LOC_IMG_3 = "(//*[@id='content']//img)[1]"
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.browser = browser
 
-        self.unique_elem = Label(self.driver.driver, self.LOC_UNIQUE_ELEM, 'open url -> show page')
-        self.img1 = WebElement(self.driver.driver, self.LOC_IMG_1, 'page show -> show img 1')
-        self.img2 = WebElement(self.driver.driver, self.LOC_IMG_2, 'page show -> show img 2')
-        self.img3 = WebElement(self.driver.driver, self.LOC_IMG_3, 'page show -> show img 3')
+        self.unique_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM, 'open url -> show page')
+        self.img1 = WebElement(self.browser.driver, self.LOC_IMG_1, 'page show -> show img 1')
+        self.img2 = WebElement(self.browser.driver, self.LOC_IMG_2, 'page show -> show img 2')
+        self.img3 = WebElement(self.browser.driver, self.LOC_IMG_3, 'page show -> show img 3')
 
     def get_unique_element(self):
         return self.unique_elem.elem_visible()

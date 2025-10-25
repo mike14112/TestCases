@@ -1,8 +1,9 @@
+import utils.pyautogui as pyautogui
 from elements.button import Button
 from elements.label import Label
 from elements.web_element import WebElement
 from pages.base_page import BasePage
-import utils.pyautogui as pyautogui
+
 
 class UploadPagePro(BasePage):
     LOC_UNIQUE_ELEM = "//*[@id='content']//h3"
@@ -11,21 +12,26 @@ class UploadPagePro(BasePage):
     LOC_RESULT_TEXT = "//*[@id='content']//h3"
     LOC_NAME_FILE = "uploaded-files"
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.browser = browser
 
-        self.unique_elem = Label(self.driver, self.LOC_UNIQUE_ELEM, 'Open Page -> show unique file')
-        self.load_file = WebElement(self.driver, self.LOC_FILE_INPUT, 'load input -> file upload')
-        self.btn_input = Button(self.driver, self.LOC_BTN_INPUT, 'click submit -> file upload')
-        self.text_result = Label(self.driver, self.LOC_RESULT_TEXT, 'Open new  Page -> show text result')
-        self.file_name = Label(self.driver, self.LOC_NAME_FILE, 'Open new  Page -> file upload name text')
+        self.unique_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM,
+                                 'Open Page -> show unique file')
+        self.load_file = WebElement(self.browser.driver, self.LOC_FILE_INPUT,
+                                    'load input -> file upload')
+        self.btn_input = Button(self.browser.driver, self.LOC_BTN_INPUT,
+                                'click submit -> file upload')
+        self.text_result = Label(self.browser.driver, self.LOC_RESULT_TEXT,
+                                 'Open new  Page -> show text result')
+        self.file_name = Label(self.browser.driver, self.LOC_NAME_FILE,
+                               'Open new  Page -> file upload name text')
 
     def get_unique_elem(self):
         return self.unique_elem.elem_visible()
 
     def set_load_file(self):
-        return  pyautogui.PyAutoGui.upload_file('/assets/f1.jpg')
+        return pyautogui.PyAutoGui.upload_file('/assets/f1.jpg')
 
     def set_click_btn(self):
         return self.btn_input.elem_visible().click()

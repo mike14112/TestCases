@@ -12,7 +12,7 @@ EXCEPT_TEXT_FRAME = 'This is a sample page'.lower().strip()
 
 
 def test_frames(browser):
-    page = IFramePage(browser.driver)
+    page = IFramePage(browser)
     browser.get(config.get('iframe_url'))
     actual_unique_elem = page.get_unique_elem()
     assert EXCEPT_UNIQUE_ELEM in actual_unique_elem, f'{EXCEPT_UNIQUE_ELEM} not in {actual_unique_elem}'
@@ -35,6 +35,3 @@ def test_frames(browser):
     browser.switch_frame('frame1')
     actual_first_frame = page.get_text_frame()
     assert EXCEPT_TEXT_FRAME in actual_first_frame, f'{EXCEPT_TEXT_FRAME} not in {actual_first_frame}'
-
-
-
