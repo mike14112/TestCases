@@ -16,7 +16,7 @@ class PageContext(BasePage):
         self.area_elem = BaseElement(self.browser.driver, self.LOC_AREA, description="area -> alert")
 
     def wait_unique(self):
-        return self.unique_elem.elem_visible()
+        return self.unique_elem.is_displayed()
 
     def context_click(self):
         return self.area_elem.context_click()

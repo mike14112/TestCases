@@ -21,7 +21,7 @@ class PageAlert(BasePage):
         self.alert_res = Label(driver=self.browser.driver, locator=self.LOC_RESULT, description="Alert -> result")
 
     def wait_unique(self):
-        return self.unique_elem.elem_visible().text.lower().strip(' ')
+        return self.unique_elem.is_displayed().text.lower().strip(' ')
 
     def click_btn_alert(self):
         return self.alert_btn_elem.btn_click()

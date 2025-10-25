@@ -12,4 +12,4 @@ class AuthPage(BasePage):
         self.unique_elem = Label(driver=self.browser.driver, locator=self.LOC_UNIQUE_ELEM, description="Main page")
 
     def wait_unique(self):
-        return self.unique_elem.elem_visible().text.lower().strip()
+        return self.unique_elem.is_displayed().text.lower().strip()

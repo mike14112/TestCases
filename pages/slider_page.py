@@ -17,7 +17,7 @@ class SliderPage(BasePage):
                                      description='click input range to 5')
 
     def wait_unique(self):
-        return self.unique_element.elem_visible().text.lower().strip()
+        return self.unique_element.is_displayed().text.lower().strip()
 
     def move_to_slider(self):
         return self.slider_element.move_element()

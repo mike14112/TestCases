@@ -15,7 +15,7 @@ class ContextPage(BasePage):
         self.area = Button(driver=self.browser.driver, locator=self.lOC_AREA_ELEM, description='button -> alert')
 
     def wait_unique(self):
-        return self.unique_elem.elem_visible().text.lower().strip(' ')
+        return self.unique_elem.is_displayed().text.lower().strip(' ')
 
     def context_click(self):
         return self.area.context_click()

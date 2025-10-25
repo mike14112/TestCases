@@ -17,7 +17,7 @@ class HoversPage(BasePage):
         self.unique_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM, description='open url -> main page')
 
     def wait_unique(self):
-        return self.unique_elem.elem_visible().text.lower().strip(' ')
+        return self.unique_elem.is_displayed().text.lower().strip(' ')
 
     def hover_user(self, index):
         loq_user = self.LOC_USER_ELEM.format(index)
@@ -27,7 +27,7 @@ class HoversPage(BasePage):
     def get_user_info(self, index):
         loq_user_text = self.LOC_USER_TEXT.format(index)
         hover_user = Label(self.browser.driver, loq_user_text, description='user -> user hover text')
-        return hover_user.get_text().lower().strip('')
+        return hover_user.is_displayed().text.lower().strip('')
 
     def open_user_link(self, index):
         loq_user_link = self.LOC_LINK_USER.format(index)

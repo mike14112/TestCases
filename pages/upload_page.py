@@ -27,13 +27,13 @@ class UploadPage(BasePage):
                                'Open new  Page -> file upload name text')
 
     def get_unique_elem(self):
-        return self.unique_elem.elem_visible()
+        return self.unique_elem.is_displayed()
 
     def set_load_file(self):
-        return self.load_file.elem_visible().send_keys("assets/f1.jpg")
+        return self.load_file.is_displayed().send_keys("assets/f1.jpg")
 
     def set_click_btn(self):
-        return self.btn_input.elem_visible().click()
+        return self.btn_input.is_displayed().click()
 
     def get_text_result(self):
         return self.text_result.elem_fast_wait().text.lower().strip()

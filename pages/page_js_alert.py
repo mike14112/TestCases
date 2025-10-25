@@ -23,7 +23,7 @@ class PageJsAlert(BasePage):
         self.alert_res = Label(driver=self.browser.driver, locator=self.LOC_RESULT, description="Alert -> result")
 
     def wait_unique(self):
-        return self.unique_elem.elem_visible().text.lower()
+        return self.unique_elem.is_displayed().text.lower()
 
     def click_btn_alert(self):
         return self.alert_btn_elem.js_click()

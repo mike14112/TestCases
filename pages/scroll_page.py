@@ -21,13 +21,13 @@ class ScrollPage(BasePage):
                                           self.LOC_PARAGRAPH_ELEMS, 'open page -> show paragraph element')
 
     def get_unique_elem(self):
-        return self.unique_elems.elem_visible()
+        return self.unique_elems.is_displayed()
 
     def key_down(self):
         return self.btn_scroll.key_down()
 
-    def count_paragraph(self):
-        while len(self.paragraph_elems.wait_for_all_elems()) < 30:
-            self.btn_scroll.key_down()
-        else:
-            return True
+    # def count_paragraph(self):
+    #     while len(self.paragraph_elems.wait_for_all_elems()) < 30:
+    #         self.btn_scroll.key_down()
+    #     else:
+    #         return True

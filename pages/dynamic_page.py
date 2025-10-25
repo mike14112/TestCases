@@ -19,7 +19,7 @@ class DynamicPage(BasePage):
         self.img3 = WebElement(self.browser.driver, self.LOC_IMG_3, 'page show -> show img 3')
 
     def get_unique_element(self):
-        return self.unique_elem.elem_visible()
+        return self.unique_elem.is_displayed()
 
     def get_img1(self):
         return self.img1.get_attribute('src')

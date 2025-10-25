@@ -14,4 +14,3 @@ def test_page_context(browser):
     actual = page.wait_unique().text.lower().strip()
     assert EXCEPT in actual, f'EXCEPT:{EXCEPT} not in {actual}'
     page.context_click()
-    input()

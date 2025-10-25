@@ -17,10 +17,10 @@ class PageHandler(BasePage):
         self.text_main_page = Label(self.browser.driver, self.LOC_ELEM_TEXT, description='open page -> text main page')
 
     def wait_elem_unique(self):
-        return self.unique_elem.get_text().strip().lower()
+        return self.unique_elem.is_displayed().text.strip().lower()
 
     def get_text_elem(self):
-        return self.text_main_page.get_text().strip().lower()
+        return self.text_main_page.is_displayed().text.strip().lower()
 
 
     def click_btn(self):
