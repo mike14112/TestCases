@@ -3,8 +3,6 @@ from utils.config_reader import ConfigReader
 from utils.env import Env
 
 config = ConfigReader(env=Env.DEV.value)
-EXCEPT_UNIQUE_ELEM = 'FRAMES'.strip().lower()
-EXCEPT_UNIQUE_ELEM_NESTED_FRAMES = 'NESTED FRAMES'.strip().lower()
 EXCEPT_PARENT_FRAME = 'PARENT FRAME'.strip().lower()
 EXCEPT_CHILD_FRAME = 'CHILD iFRAME'.strip().lower()
 EXCEPT_UNIQUE_FRAME = 'FRAMES'.lower().strip()
@@ -14,13 +12,10 @@ EXCEPT_TEXT_FRAME = 'This is a sample page'.lower().strip()
 def test_frames(browser):
     page = IFramePage(browser)
     browser.get(config.get('iframe_url'))
-    actual_unique_elem = page.get_unique_elem()
-    assert EXCEPT_UNIQUE_ELEM in actual_unique_elem, f'{EXCEPT_UNIQUE_ELEM} not in {actual_unique_elem}'
+    page.get_wait_unique()
     page.click_btn_list_alerts()
     page.click_nested_frames()
-    actual_nested_frames = page.get_unique_text_nested_frames()
-    assert EXCEPT_UNIQUE_ELEM_NESTED_FRAMES in actual_nested_frames, (f'{EXCEPT_UNIQUE_ELEM_NESTED_FRAMES}'
-                                                                      f' not in {actual_nested_frames}')
+    page.get_wait_unique()
     browser.switch_frame('frame1')
     actual_parent_frame = page.get_text_parent_frame()
     assert EXCEPT_PARENT_FRAME in actual_parent_frame, f'{EXCEPT_PARENT_FRAME} not in {actual_parent_frame}'

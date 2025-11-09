@@ -8,5 +8,4 @@ class BrowserFactory:
     @staticmethod
     def get_browser_instance():
         options = Options()
-        options.add_argument(config.get('maximized_screen'))
         return webdriver.Chrome(options=options)

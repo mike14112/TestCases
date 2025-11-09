@@ -13,20 +13,19 @@ class PageAlert(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
         self.browser = browser
+        self.page_name = 'Page Alert'
 
-        self.unique_elem = Label(driver=self.browser.driver.driver,
+        self.unique_elem = Label(driver=self.browser.driver,
                                  locator=self.LOC_UNIQUE_ELEM, description="open url -> mainPage")
         self.alert_btn_elem = Button(driver=self.browser.driver, locator=self.LOC_ALERT, description="btn -> alert")
-        self.btn_confirm_elem = Button(driver=self.browser.driver, locator=self.LOC_CONFIRM, description="btn -> confirm")
+        self.btn_confirm_elem = Button(driver=self.browser.driver, locator=self.LOC_CONFIRM,
+                                       description="btn -> confirm")
         self.alert_res = Label(driver=self.browser.driver, locator=self.LOC_RESULT, description="Alert -> result")
-
-    def wait_unique(self):
-        return self.unique_elem.is_displayed().text.lower().strip(' ')
 
     def click_btn_alert(self):
         return self.alert_btn_elem.btn_click()
 
-    def result_wait(self):
+    def get_result_wait(self):
         return self.alert_res.elem_fast_wait().text.lower().strip(' ')
 
     def btn_confirm(self):

@@ -11,9 +11,11 @@ class PageHandler(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
         self.browser = browser
+        self.page_name = 'handlers page'
 
         self.unique_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM, description='get url -> open page')
-        self.btn_new_window = Button(self.browser.driver, self.LOC_BTN_ELEM, description='btn new window -> open new window')
+        self.btn_new_window = Button(self.browser.driver, self.LOC_BTN_ELEM,
+                                     description='btn new window -> open new window')
         self.text_main_page = Label(self.browser.driver, self.LOC_ELEM_TEXT, description='open page -> text main page')
 
     def wait_elem_unique(self):
@@ -21,7 +23,6 @@ class PageHandler(BasePage):
 
     def get_text_elem(self):
         return self.text_main_page.is_displayed().text.strip().lower()
-
 
     def click_btn(self):
         return self.btn_new_window.btn_click()

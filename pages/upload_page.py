@@ -14,6 +14,7 @@ class UploadPage(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
         self.browser = browser
+        self.page_name ='upload file'
 
         self.unique_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM,
                                  'Open Page -> show unique file')

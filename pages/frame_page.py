@@ -18,8 +18,10 @@ class IFramePage(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
         self.browser = browser
-        self.unique_main_page_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM,
-                                           description='open browser -> unique elem')
+        self.page_name = 'IFrame Page'
+
+        self.unique_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM,
+                                 description='open browser -> unique elem')
         self.btn_list_alerts = Button(self.browser.driver, self.LOC_BTN_ALERT_LIST,
                                       description='click btn list frames -> show list alerts and frames')
         self.btn_nested_frames = Button(self.browser.driver, self.LOC_BTN_NESTED_FRAMES,
@@ -34,13 +36,10 @@ class IFramePage(BasePage):
                                            description='switch to child frames -> child frame')
         self.frame_elem = Button(self.browser.driver, self.LOC_FRAME_ELEM,
                                  description='click frame elem -> page open frame')
-        self.unique_elem_frame_text = Label(self.driver, self.LOC_FRAME_UNIQUE_PAGE,
+        self.unique_elem_frame_text = Label(self.browser.driver, self.LOC_FRAME_UNIQUE_PAGE,
                                             description='click frame elem -> show unique elem page')
         self.frame_text = Label(self.browser.driver, self.LOC_TEXT_FRAME,
                                 description=' open  page frame -> show frame text')
-
-    def get_unique_elem(self):
-        return self.unique_main_page_elem.is_displayed().text.lower().strip()
 
     def click_btn_list_alerts(self):
         return self.btn_list_alerts.btn_click()

@@ -1,4 +1,4 @@
-from elements.button import Button
+from elements.action_chains import Actions
 from elements.label import Label
 from pages.base_page import BasePage
 
@@ -10,12 +10,11 @@ class ContextPage(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
         self.browser = browser
+        self.page_name = 'context page'
 
-        self.unique_elem = Label(driver=self.browser.driver, locator=self.LOC_UNIQUE_ELEM, description='open page -> opening')
-        self.area = Button(driver=self.browser.driver, locator=self.lOC_AREA_ELEM, description='button -> alert')
+        self.unique_elem = Label(driver=self.browser.driver, locator=self.LOC_UNIQUE_ELEM,
+                                 description='open page -> opening')
+        self.area = Actions(driver=self.browser.driver, locator=self.lOC_AREA_ELEM, description='button -> alert')
 
-    def wait_unique(self):
-        return self.unique_elem.is_displayed().text.lower().strip(' ')
-
-    def context_click(self):
+    def click_context(self):
         return self.area.context_click()

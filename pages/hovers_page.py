@@ -13,6 +13,7 @@ class HoversPage(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
         self.browser = browser
+        self.page_name = 'hovers page'
 
         self.unique_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM, description='open url -> main page')
 

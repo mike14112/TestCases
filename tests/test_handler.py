@@ -10,8 +10,7 @@ config = ConfigReader(env=Env.DEV.value)
 def test_handler(browser):
     page = PageHandler(browser.driver)
     browser.get(config.get('handlers_url'))
-    actual = page.wait_elem_unique()
-    assert EXCEPT_MAIN_PAGE in actual, f'EXCEPT {EXCEPT_MAIN_PAGE} is not in {actual}'
+    page.get_wait_unique()
     page.click_btn()
     browser.switch_window(1)
     actual_window1 = browser.get_title_window().lower().strip()

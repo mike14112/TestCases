@@ -8,5 +8,6 @@ config = ConfigReader(env=Env.DEV.value)
 def test_scroll(browser):
     page = ScrollPage(browser)
     browser.get(config.get('scroll_url'))
-    page.get_unique_elem()
-    page.count_paragraph()
+    page.get_wait_unique()
+    page.get_paragraph(30)
+

@@ -1,38 +1,26 @@
 from elements.label import Label
+from elements.multi_web_elements import MultiWebElements
 from elements.web_element import WebElement
 from pages.base_page import BasePage
 
 
 class DynamicPage(BasePage):
     LOC_UNIQUE_ELEM = "//*[contains(@class, 'example')]//h3"
-    LOC_IMG_1 = "(//*[@id='content']//img)[1]"
-    LOC_IMG_2 = "(//*[@id='content']//img)[1]"
-    LOC_IMG_3 = "(//*[@id='content']//img)[1]"
+    LOC_IMGS = "(//*[@id='content']//img)[{}]"
+
+
 
     def __init__(self, browser):
         super().__init__(browser)
         self.browser = browser
+        self.page_name = 'Dynamic Page'
 
         self.unique_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM, 'open url -> show page')
-        self.img1 = WebElement(self.browser.driver, self.LOC_IMG_1, 'page show -> show img 1')
-        self.img2 = WebElement(self.browser.driver, self.LOC_IMG_2, 'page show -> show img 2')
-        self.img3 = WebElement(self.browser.driver, self.LOC_IMG_3, 'page show -> show img 3')
+        self.imgs = MultiWebElements(self.browser.driver, self.LOC_IMGS, 'page show -> show img  ')
 
-    def get_unique_element(self):
-        return self.unique_elem.is_displayed()
 
-    def get_img1(self):
-        return self.img1.get_attribute('src')
 
-    def get_img2(self):
-        return self.img2.get_attribute('src')
+    def get_all_src(self):
+       return [img.get_attribute('src') for img in self.imgs ]
 
-    def get_img3(self):
-        return self.img3.get_attribute('src')
-
-    def match_img(self):
-        while self.get_img1() != self.get_img2() or self.get_img2() != self.get_img3() or self.get_img3() != self.get_img1():
-           return self.driver.refresh()
-        else:
-           return True
 

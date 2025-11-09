@@ -1,4 +1,6 @@
-from elements.button import Button
+from bs4 import BeautifulSoup
+
+from elements.action_chains import Actions
 from elements.label import Label
 from elements.web_element import WebElement
 from pages.base_page import BasePage
@@ -7,27 +9,33 @@ from pages.base_page import BasePage
 class ScrollPage(BasePage):
     LOC_UNIQUE_ELEM = "//*[@id='content']//h3"
     LOC_SCROLL_ELEM = "//*[contains(@class, 'jscroll-inner')]"
-    LOC_PARAGRAPH_ELEMS = "//*[contains(@class, 'jscroll-added')]"
+    LOC_PARAGRAPH_ELEM = "//*[contains(@class, 'jscroll-added')]"
 
     def __init__(self, browser):
         super().__init__(browser)
         self.browser = browser
+        self.page_name = 'scroll page'
 
-        self.unique_elems = Label(self.browser.driver,
-                                  self.LOC_UNIQUE_ELEM, 'open page -> show unique element')
-        self.btn_scroll = Button(self.browser.driver,
-                                 self.LOC_SCROLL_ELEM, 'open page -> show scroll element')
-        self.paragraph_elems = WebElement(self.browser.driver,
-                                          self.LOC_PARAGRAPH_ELEMS, 'open page -> show paragraph element')
-
-    def get_unique_elem(self):
-        return self.unique_elems.is_displayed()
+        self.unique_elem = Label(self.browser.driver,
+                                 self.LOC_UNIQUE_ELEM, 'open page -> show unique element')
+        self.btn_scroll = Actions(self.browser.driver,
+                                     self.LOC_SCROLL_ELEM, 'open page -> show scroll element')
+        self.paragraph_elem = WebElement(self.browser.driver,
+                                         self.LOC_PARAGRAPH_ELEM, 'scroll page -> show paragraph element')
 
     def key_down(self):
         return self.btn_scroll.key_down()
 
-    # def count_paragraph(self):
-    #     while len(self.paragraph_elems.wait_for_all_elems()) < 30:
-    #         self.btn_scroll.key_down()
-    #     else:
-    #         return True
+    def get_paragraph(self, number):
+        result = []
+        while len(result) < number:
+            soup = BeautifulSoup(self.paragraph_elem.get_attribute('innerHTML'), 'html.parser')
+            rows = soup.find_all('br')
+
+            for row in rows:
+                result.append(row)
+                if len(result) >= number:
+                    break
+            self.key_down()
+
+        return result

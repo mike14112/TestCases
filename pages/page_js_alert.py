@@ -13,6 +13,7 @@ class PageJsAlert(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
         self.browser = browser
+        self.page_name ='Page  js Alert'
 
         self.unique_elem = Label(driver=self.browser.driver,
                                  locator=self.LOC_UNIQUE_ELEM, description="unique elem")
