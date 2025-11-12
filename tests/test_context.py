@@ -4,7 +4,6 @@ from utils.env import Env
 
 config = ConfigReader(env=Env.DEV.value)
 
-# EXCEPT = 'Context Menu'.lower().strip()
 EXCEPT_ALERT = 'You selected a context menu'.lower().strip()
 
 

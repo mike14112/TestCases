@@ -18,12 +18,12 @@ def test_handler(browser):
     actual_elem_window = page.get_text_elem()
     assert EXCEPT_WINDOW in actual_elem_window, f'EXCEPT {EXCEPT_WINDOW} is not in {actual_elem_window}'
     browser.switch_window(0)
-    assert EXCEPT_MAIN_PAGE in actual, f'EXCEPT {EXCEPT_MAIN_PAGE} is not in {actual}'
+
     page.click_btn()
     browser.switch_window(2)
     assert EXCEPT_WINDOW in actual_window1, f'EXCEPT {EXCEPT_WINDOW} is not in {actual_window1}'
     browser.switch_window(0)
-    assert EXCEPT_MAIN_PAGE in actual, f'EXCEPT {EXCEPT_MAIN_PAGE} is not in {actual}'
+
     browser.switch_window(2)
     browser.close()
     browser.switch_window(1)

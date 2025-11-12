@@ -67,9 +67,6 @@ class BaseElement:
             Logger.error(f'{self.description} is not found')
             raise
 
-
-
-
     def wait_for_frame(self):
         try:
             Logger.info(f'self.description: {self.description}')
@@ -87,8 +84,6 @@ class BaseElement:
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
             raise
-
-
 
     def is_exists(self):
         try:

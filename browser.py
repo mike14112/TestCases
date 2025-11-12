@@ -48,7 +48,8 @@ class Browser:
 
     def switch_frame(self, frame):
         Logger.info("Switch frame")
-        return self.driver.switch_to.frame(frame)
+        return WebDriverWait(self.driver, config.get('wait')).until(EC.frame_to_be_available_and_switch_to_it(frame))
+
 
     def switch_to_default_content(self):
         Logger.info("Switch to default content")
@@ -60,10 +61,12 @@ class Browser:
         alert = wait.until(EC.alert_is_present())
         return alert
 
-    def is_alert_closed(self):
+    def wait_alert(self):
         try:
-            self.switch_alert()
-            return False
+            Logger.info(f'Wait alert')
+            wait = WebDriverWait(self.driver, config.get('wait'))
+            alert = wait.until(EC.alert_is_present())
+            return alert
         except NoAlertPresentException:
             return True
 

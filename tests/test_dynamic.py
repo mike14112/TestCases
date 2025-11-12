@@ -13,7 +13,6 @@ def test_dynamic(browser):
         if img[i] != img[i+1]:
             browser.refresh()
         else:
-            print(imgs)
             break
 
 
