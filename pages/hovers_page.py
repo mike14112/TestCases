@@ -28,7 +28,7 @@ class HoversPage(BasePage):
     def get_user_info(self, index):
         loq_user_text = self.LOC_USER_TEXT.format(index)
         hover_user = Label(self.browser.driver, loq_user_text, description='user -> user hover text')
-        return hover_user.presence_of_element().text.lower().strip('')
+        return hover_user.get_text()
 
     def open_user_link(self, index):
         loq_user_link = self.LOC_LINK_USER.format(index)

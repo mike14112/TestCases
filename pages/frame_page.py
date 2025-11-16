@@ -48,19 +48,19 @@ class IFramePage(BasePage):
         return self.btn_nested_frames.click_elem()
 
     def get_unique_text_nested_frames(self):
-        return self.unique_nested_frame_page.visibility_of_elem().text.lower().strip()
+        return self.unique_nested_frame_page.get_text()
 
     def get_text_parent_frame(self):
-        return self.parent_frame_text.visibility_of_elem().text.lower().strip()
+        return self.parent_frame_text.get_text()
 
     def get_text_child_frame(self):
-        return self.child_frame_text.visibility_of_elem().text.lower().strip()
+        return self.child_frame_text.get_text()
 
     def click_frame_menu(self):
         return self.frame_elem.click_elem()
 
     def get_text_unique_frame_page(self):
-        return self.unique_elem_frame_text.visibility_of_elem().text.lower().strip()
+        return self.unique_elem_frame_text.get_text()
 
     def get_text_frame(self):
-        return self.frame_text.visibility_of_elem().text.lower().strip()
+        return self.frame_text.get_text()

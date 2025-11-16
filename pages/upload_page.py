@@ -34,10 +34,10 @@ class UploadPage(BasePage):
         return self.load_file.visibility_of_elem().send_keys(file_name)
 
     def set_click_btn(self):
-        return self.btn_input.visibility_of_elem().click()
+        return self.btn_input.click_elem()
 
     def get_text_result(self):
-        return self.text_result.presence_of_element().text.lower().strip()
+        return self.text_result.get_text()
 
     def get_file_name(self):
-        return self.file_name.presence_of_element().text.lower().strip()
+        return self.file_name.get_text()

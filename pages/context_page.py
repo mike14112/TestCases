@@ -21,4 +21,4 @@ class ContextPage(BasePage):
                                description='area -> context  area')
 
     def click_context(self):
-        return self.actions.context_click(self.area_elem)
+        return self.actions.click_context(self.area_elem)

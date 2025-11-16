@@ -37,6 +37,3 @@ def test_hovers(browser):
     page.open_user_link(3)
     actual_user_link3 = browser.get_url()
     assert EXCEPTED_USER3_LINK in actual_user_link3, f'Expected: {EXCEPTED_USER3_LINK} Actual:{actual_user_link3}'
-
-
-
