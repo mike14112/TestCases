@@ -1,19 +1,19 @@
-from pages.upload_page import UploadPage
+from pages.upload_file_pro_page import UploadPagePro
 from utils.config_reader import ConfigReader
 from utils.env import Env
 
 config = ConfigReader(env=Env.DEV.value)
 EXCEPT_RESULT = 'File Uploaded!'.lower().strip()
 EXCEPT_FILE_NAME = 'f1'.lower().strip()
+file_path = "assets/f1.jpg"
 
 
-def test_upload(browser):
-    page = UploadPage(browser)
+def test_upload_pro(browser):
+    page = UploadPagePro(browser)
     browser.get(config.get('upload_url'))
-    page.get_unique_elem()
-    page.set_load_file()
-    page.set_click_btn()
+    page.wait_for_open()
+    page.file_load_set(file_path)
     actual_res = page.get_text_result()
-    assert EXCEPT_RESULT in actual_res, f'{EXCEPT_RESULT} is not {actual_res}'
+    assert EXCEPT_RESULT in actual_res, f' Expected {EXCEPT_RESULT} is not {actual_res}'
     actual_file_name = page.get_file_name()
-    assert EXCEPT_FILE_NAME in actual_file_name, f'{EXCEPT_FILE_NAME} is not {actual_file_name}'
+    assert EXCEPT_FILE_NAME in actual_file_name, f' Expected {EXCEPT_FILE_NAME} is not {actual_file_name}'

@@ -26,7 +26,7 @@ class BaseElement:
         else:
             self.locator = locator
 
-    def elem_fast_wait(self):
+    def wait_for_presence(self):
         try:
             Logger.info('Element fast wait is {}'.format(self.description))
             return WebDriverWait(self.driver, self.fast_wait).until(EC.presence_of_element_located(self.locator))
@@ -34,7 +34,7 @@ class BaseElement:
             Logger.error('Element fast wait is not found')
             raise
 
-    def is_displayed(self):
+    def visibility_of_elem(self):
         try:
             Logger.info(f'self.description: {self.description}')
             return WebDriverWait(self.driver, self.wait).until(EC.visibility_of_element_located(self.locator))
@@ -50,7 +50,16 @@ class BaseElement:
             Logger.error(f'{self.description} is not found')
             raise
 
-    def btn_click(self):
+    def get_text(self):
+        try:
+            Logger.info(f'self.description: {self.description}')
+            return WebDriverWait(self.driver, self.fast_wait).until(
+                EC.presence_of_element_located(self.locator)).text.strip().lower()
+        except TimeoutException:
+            Logger.error(f'{self.description} is not found')
+            raise
+
+    def click_elem(self):
         try:
             Logger.info(f'self.description: {self.description}')
             return WebDriverWait(self.driver, self.wait).until(EC.element_to_be_clickable(self.locator)).click()
@@ -61,17 +70,8 @@ class BaseElement:
     def js_click(self):
         try:
             Logger.info(f'self.description: {self.description}')
-            element = WebDriverWait(self.driver, self.wait).until(EC.presence_of_element_located(self.locator))
+            element = WebDriverWait(self.driver, self.wait).until(EC.element_to_be_clickable(self.locator))
             return self.driver.execute_script('return arguments[0].click();', element)
-        except TimeoutException:
-            Logger.error(f'{self.description} is not found')
-            raise
-
-    def wait_for_frame(self):
-        try:
-            Logger.info(f'self.description: {self.description}')
-            frame = WebDriverWait(self.driver, self.wait).until(EC.frame_to_be_available_and_switch_to_it(self.locator))
-            return frame
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
             raise

@@ -13,4 +13,4 @@ def test_auth(browser, login, password):
     page = AuthPage(browser)
     link = config.get('basic_auth')
     browser.get(f'https://{login}:{password}@{link}')
-    page.get_wait_unique()
+    page.wait_for_open()

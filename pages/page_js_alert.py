@@ -13,10 +13,10 @@ class PageJsAlert(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
         self.browser = browser
-        self.page_name ='Page  js Alert'
+        self.page_name = 'Page  js Alert'
 
         self.unique_elem = Label(driver=self.browser.driver,
-                                 locator=self.LOC_UNIQUE_ELEM, description="unique elem")
+                                 locator=self.LOC_UNIQUE_ELEM, description="open url -> unique element")
         self.alert_btn_elem = Button(driver=self.browser.driver, locator=self.LOC_ALERT, description="btn -> alert")
         self.btn_confirm_elem = Button(driver=self.browser.driver, locator=self.LOC_CONFIRM,
                                        description="btn -> confirm")
@@ -24,13 +24,13 @@ class PageJsAlert(BasePage):
         self.alert_res = Label(driver=self.browser.driver, locator=self.LOC_RESULT, description="Alert -> result")
 
     def wait_unique(self):
-        return self.unique_elem.is_displayed().text.lower()
+        return self.unique_elem.get_text()
 
     def click_btn_alert(self):
         return self.alert_btn_elem.js_click()
 
     def result_wait(self):
-        return self.alert_res.elem_fast_wait().text.lower().strip()
+        return self.alert_res.get_text()
 
     def btn_confirm(self):
-        return self.btn_confirm_elem.btn_click()
+        return self.btn_confirm_elem.click_elem()

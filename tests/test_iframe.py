@@ -12,21 +12,21 @@ EXCEPT_TEXT_FRAME = 'This is a sample page'.lower().strip()
 def test_frames(browser):
     page = IFramePage(browser)
     browser.get(config.get('iframe_url'))
-    page.get_wait_unique()
+    page.wait_for_open()
     page.click_btn_list_alerts()
     page.click_nested_frames()
-    page.get_wait_unique()
+    page.wait_for_open()
     browser.switch_frame('frame1')
     actual_parent_frame = page.get_text_parent_frame()
-    assert EXCEPT_PARENT_FRAME in actual_parent_frame, f'{EXCEPT_PARENT_FRAME} not in {actual_parent_frame}'
+    assert EXCEPT_PARENT_FRAME in actual_parent_frame, f'Expected {EXCEPT_PARENT_FRAME} not in {actual_parent_frame}'
     browser.switch_frame(0)
     actual_child_frame = page.get_text_child_frame()
-    assert EXCEPT_CHILD_FRAME in actual_child_frame, f'{EXCEPT_CHILD_FRAME} not in {actual_child_frame}'
+    assert EXCEPT_CHILD_FRAME in actual_child_frame, f'Expected {EXCEPT_CHILD_FRAME} not in {actual_child_frame}'
     browser.switch_to_default_content()
     page.click_btn_list_alerts()
     page.click_frame_menu()
     actual_frame_unique = page.get_text_unique_frame_page()
-    assert EXCEPT_UNIQUE_FRAME in actual_frame_unique, f'{EXCEPT_UNIQUE_FRAME} not in {actual_frame_unique}'
+    assert EXCEPT_UNIQUE_FRAME in actual_frame_unique, f'Expected {EXCEPT_UNIQUE_FRAME} not in {actual_frame_unique}'
     browser.switch_frame('frame1')
     actual_first_frame = page.get_text_frame()
-    assert EXCEPT_TEXT_FRAME in actual_first_frame, f'{EXCEPT_TEXT_FRAME} not in {actual_first_frame}'
+    assert EXCEPT_TEXT_FRAME in actual_first_frame, f'Expected {EXCEPT_TEXT_FRAME} not in {actual_first_frame}'

@@ -1,37 +1,37 @@
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains, Keys
-from selenium.webdriver.support.wait import WebDriverWait
 
-from elements.base_element import BaseElement
+from elements.web_element import WebElement
 from logger.logger import Logger
 
 
-class Actions(BaseElement):
-    def key_down(self):
-        try:
-            Logger.info(f'self.description: {self.description}')
-            element = WebDriverWait(self.driver, self.wait).until(EC.visibility_of_element_located(self.locator))
-            return ActionChains(self.driver).key_down(Keys.ARROW_DOWN, element).perform()
-        except TimeoutException:
-            Logger.error(f'{self.description} is not found')
-            raise
+class Actions:
+    def __init__(self, browser):
+        self.driver = browser.driver
 
-    def move_element(self):
+    def key_down(self, element: WebElement):
         try:
-            Logger.info(f'self.description: {self.description}')
-            element = WebDriverWait(self.driver, self.wait).until(EC.visibility_of_element_located(self.locator))
-            return (ActionChains(self.driver).click_and_hold(element)
-                    .move_by_offset(yoffset=5, xoffset=0).release().perform())
+            return ActionChains(self.driver).key_down(Keys.ARROW_DOWN, element.visibility_of_elem()).perform()
         except TimeoutException:
-            Logger.error(f'{self.description} is not found')
-            raise
+            return Logger.error(f'Timeout exception occurred: not found element {element}')
 
-    def context_click(self):
+    def key_right(self, element: WebElement):
         try:
-            Logger.info(f'self.description: {self.description}')
-            element = WebDriverWait(self.driver, self.wait).until(EC.visibility_of_element_located(self.locator))
-            return ActionChains(self.driver).context_click(element).perform()
+            Logger.info('Move to element')
+            return ActionChains(self.driver).send_keys_to_element(element.visibility_of_elem(),
+                                                                  Keys.ARROW_RIGHT).perform()
         except TimeoutException:
-            Logger.error(f'{self.description} is not found')
-            raise
+            return Logger.error(f'Timeout exception occurred: not found element {element}')
+
+    def click_context(self, element: WebElement):
+        try:
+            Logger.info('context_click')
+            return ActionChains(self.driver).context_click(element.visibility_of_elem()).perform()
+        except TimeoutException:
+            return Logger.error(f'Timeout exception occurred: not found element {element}')
+
+    def move_to_element(self, element: WebElement):
+        try:
+            return ActionChains(self.driver).move_to_element(element).perform()
+        except TimeoutException:
+            return Logger.error(f'Timeout exception occurred: not found element {element}')

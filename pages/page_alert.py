@@ -16,17 +16,17 @@ class PageAlert(BasePage):
         self.page_name = 'Page Alert'
 
         self.unique_elem = Label(driver=self.browser.driver,
-                                 locator=self.LOC_UNIQUE_ELEM, description="open url -> mainPage")
+                                 locator=self.LOC_UNIQUE_ELEM, description="open url -> unique element")
         self.alert_btn_elem = Button(driver=self.browser.driver, locator=self.LOC_ALERT, description="btn -> alert")
         self.btn_confirm_elem = Button(driver=self.browser.driver, locator=self.LOC_CONFIRM,
                                        description="btn -> confirm")
         self.alert_res = Label(driver=self.browser.driver, locator=self.LOC_RESULT, description="Alert -> result")
 
     def click_btn_alert(self):
-        return self.alert_btn_elem.btn_click()
+        return self.alert_btn_elem.click_elem()
 
     def get_result_wait(self):
-        return self.alert_res.elem_fast_wait().text.lower().strip(' ')
+        return self.alert_res.get_text()
 
     def btn_confirm(self):
-        return self.btn_confirm_elem.btn_click()
+        return self.btn_confirm_elem.click_elem()

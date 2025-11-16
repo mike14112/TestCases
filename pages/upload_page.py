@@ -28,16 +28,16 @@ class UploadPage(BasePage):
                                'Open new  Page -> file upload name text')
 
     def get_unique_elem(self):
-        return self.unique_elem.is_displayed()
+        return self.unique_elem.visibility_of_elem()
 
-    def set_load_file(self):
-        return self.load_file.is_displayed().send_keys("assets/f1.jpg")
+    def set_load_file(self, file_name):
+        return self.load_file.visibility_of_elem().send_keys(file_name)
 
     def set_click_btn(self):
-        return self.btn_input.is_displayed().click()
+        return self.btn_input.visibility_of_elem().click()
 
     def get_text_result(self):
-        return self.text_result.elem_fast_wait().text.lower().strip()
+        return self.text_result.presence_of_element().text.lower().strip()
 
     def get_file_name(self):
-        return self.file_name.elem_fast_wait().text.lower().strip()
+        return self.file_name.presence_of_element().text.lower().strip()

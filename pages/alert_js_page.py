@@ -25,11 +25,11 @@ class AlertJsPage(BasePage):
 
 
     def click_btn_alert(self):
-        Logger.info(f'{self.page_name}')
-        return self.alert_btn_elem.js_click()
+         self.alert_btn_elem.js_click()
 
-    def get_result_wait(self):
-        return self.alert_res.elem_fast_wait().text.lower().strip()
+    def get_result_text(self):
+          self.alert_res.get_text()
 
-    def btn_confirm(self):
+
+    def confirm_btn(self):
         return self.btn_confirm_elem.js_click()

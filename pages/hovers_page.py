@@ -1,3 +1,4 @@
+from elements.action_chains import Actions
 from elements.button import Button
 from elements.label import Label
 from elements.web_element import WebElement
@@ -14,23 +15,22 @@ class HoversPage(BasePage):
         super().__init__(browser)
         self.browser = browser
         self.page_name = 'hovers page'
+        self.actions = Actions(self.browser)
 
-        self.unique_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM, description='open url -> main page')
+        self.unique_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM, description='open url -> unique element')
 
-    def wait_unique(self):
-        return self.unique_elem.is_displayed().text.lower().strip(' ')
 
     def hover_user(self, index):
         loq_user = self.LOC_USER_ELEM.format(index)
         elem = WebElement(self.browser.driver, loq_user, description='mouse to ->  user')
-        return elem.move_element()
+        self.actions.move_to_element(elem.visibility_of_elem())
 
     def get_user_info(self, index):
         loq_user_text = self.LOC_USER_TEXT.format(index)
         hover_user = Label(self.browser.driver, loq_user_text, description='user -> user hover text')
-        return hover_user.is_displayed().text.lower().strip('')
+        return hover_user.presence_of_element().text.lower().strip('')
 
     def open_user_link(self, index):
         loq_user_link = self.LOC_LINK_USER.format(index)
         link_user = Button(self.browser.driver, loq_user_link, description='user -> user link')
-        return link_user.btn_click()
+        return link_user.click_elem()

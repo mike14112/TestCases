@@ -1,7 +1,9 @@
 import time
 
-from logger import logger
 import pyautogui
+
+from logger import logger
+
 
 class PyAutoGui:
     @staticmethod

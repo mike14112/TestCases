@@ -15,16 +15,17 @@ class ScrollPage(BasePage):
         super().__init__(browser)
         self.browser = browser
         self.page_name = 'scroll page'
+        self.actions = Actions(browser)
 
         self.unique_elem = Label(self.browser.driver,
                                  self.LOC_UNIQUE_ELEM, 'open page -> show unique element')
-        self.btn_scroll = Actions(self.browser.driver,
+        self.btn_scroll = WebElement(self.browser.driver,
                                      self.LOC_SCROLL_ELEM, 'open page -> show scroll element')
         self.paragraph_elem = WebElement(self.browser.driver,
                                          self.LOC_PARAGRAPH_ELEM, 'scroll page -> show paragraph element')
 
-    def key_down(self):
-        return self.btn_scroll.key_down()
+    def body_key_down(self):
+        return self.actions.key_down(self.btn_scroll)
 
     def get_paragraph(self, number):
         result = []
@@ -36,6 +37,6 @@ class ScrollPage(BasePage):
                 result.append(row)
                 if len(result) >= number:
                     break
-            self.key_down()
+            self.body_key_down()
 
         return result

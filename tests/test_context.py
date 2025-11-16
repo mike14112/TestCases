@@ -10,8 +10,8 @@ EXCEPT_ALERT = 'You selected a context menu'.lower().strip()
 def test_page_context(browser):
     page = ContextPage(browser)
     browser.get(config.get('context_url'))
-    page.get_wait_unique()
+    page.wait_for_open()
     page.click_context()
     actual_alert = browser.get_text_alert().lower().strip()
-    assert EXCEPT_ALERT in actual_alert, f'EXCEPT_ALERT:{EXCEPT_ALERT} not in {actual_alert}'
+    assert EXCEPT_ALERT in actual_alert, f'Expected :{EXCEPT_ALERT} not in {actual_alert}'
 

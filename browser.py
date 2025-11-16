@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from browser_factory import BrowserFactory
+from elements.base_element import BaseElement
 from logger.logger import Logger
 from utils.config_reader import ConfigReader
 from utils.env import Env
@@ -46,10 +47,9 @@ class Browser:
         Logger.info("Get title window")
         return self.driver.title
 
-    def switch_frame(self, frame):
+    def switch_frame(self, frame: BaseElement):
         Logger.info("Switch frame")
-        return WebDriverWait(self.driver, config.get('wait')).until(EC.frame_to_be_available_and_switch_to_it(frame))
-
+        return self.driver.switch_to.frame(frame.presence_of_element())
 
     def switch_to_default_content(self):
         Logger.info("Switch to default content")
@@ -65,8 +65,7 @@ class Browser:
         try:
             Logger.info(f'Wait alert')
             wait = WebDriverWait(self.driver, config.get('wait'))
-            alert = wait.until(EC.alert_is_present())
-            return alert
+            return wait.until(EC.alert_is_present())
         except NoAlertPresentException:
             return True
 
