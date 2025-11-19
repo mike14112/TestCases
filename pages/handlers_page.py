@@ -13,15 +13,13 @@ class PageHandler(BasePage):
         self.browser = browser
         self.page_name = 'handlers page'
 
-        self.unique_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM, description='get url -> unique element')
-        self.btn_new_window = Button(self.browser.driver, self.LOC_BTN_ELEM,
+        self.unique_elem = Label(self.browser, self.LOC_UNIQUE_ELEM, description='get url -> unique element')
+        self.btn_new_window = Button(self.browser, self.LOC_BTN_ELEM,
                                      description='btn new window -> open new window')
-        self.text_main_page = Label(self.browser.driver, self.LOC_ELEM_TEXT, description='open page -> text main page')
-
-    def wait_elem_unique(self):
-        return self.unique_elem.get_text()
+        self.text_main_page = Label(self.browser, self.LOC_ELEM_TEXT, description='open page -> text main page')
 
     def get_text_elem(self):
-        return self.text_main_page.get_text()
+        return self.text_main_page.get_text().lower().strip()
+
     def click_btn(self):
-        return self.btn_new_window.click_elem()
+        self.btn_new_window.click()

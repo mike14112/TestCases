@@ -1,5 +1,5 @@
 dev:
-  wait: 10
+  wait: 15
   fast_pull_frequency: 0.1
   screen_size: "window-size=1920x1080"
   headless: '--headless'

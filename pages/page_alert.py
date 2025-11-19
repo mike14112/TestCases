@@ -4,7 +4,7 @@ from pages.base_page import BasePage
 
 
 class PageAlert(BasePage):
-    LOC_UNIQUE_ELEM = '//*[@class="example"]//h3'
+    LOC_UNIQUE_ELEM = '//*[contains(@class, "example")]//h3'
     LOC_ALERT = "//*[contains(@onclick, 'jsAlert()')]"
     LOC_CONFIRM = "//*[contains(@onclick, 'jsConfirm()')]"
     LOC_PROMPT = "//*[contains(@onclick, 'jsPrompt()')]"
@@ -15,18 +15,18 @@ class PageAlert(BasePage):
         self.browser = browser
         self.page_name = 'Page Alert'
 
-        self.unique_elem = Label(driver=self.browser.driver,
+        self.unique_elem = Label(self.browser,
                                  locator=self.LOC_UNIQUE_ELEM, description="open url -> unique element")
-        self.alert_btn_elem = Button(driver=self.browser.driver, locator=self.LOC_ALERT, description="btn -> alert")
-        self.btn_confirm_elem = Button(driver=self.browser.driver, locator=self.LOC_CONFIRM,
+        self.alert_btn_elem = Button(self.browser, locator=self.LOC_ALERT, description="btn -> alert")
+        self.btn_confirm_elem = Button(self.browser, locator=self.LOC_CONFIRM,
                                        description="btn -> confirm")
-        self.alert_res = Label(driver=self.browser.driver, locator=self.LOC_RESULT, description="Alert -> result")
+        self.alert_res = Label(self.browser, locator=self.LOC_RESULT, description="Alert -> result")
 
     def click_btn_alert(self):
-        return self.alert_btn_elem.click_elem()
+         self.alert_btn_elem.click()
 
     def get_result_wait(self):
-        return self.alert_res.get_text()
+        return self.alert_res.get_text().lower().strip()
 
     def btn_confirm(self):
-        return self.btn_confirm_elem.click_elem()
+         self.btn_confirm_elem.click()

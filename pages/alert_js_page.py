@@ -1,4 +1,3 @@
-from logger.logger import Logger
 from elements.button import Button
 from elements.label import Label
 from pages.base_page import BasePage
@@ -17,19 +16,18 @@ class AlertJsPage(BasePage):
         self.browser = browser
         self.page_name = 'alert js page'
 
-        self.unique_elem = Label(driver=self.browser.driver,
+        self.unique_elem = Label(self.browser,
                                  locator=self.LOC_UNIQUE_ELEM, description="unique elem")
-        self.alert_btn_elem = Button(driver=self.browser.driver, locator=self.LOC_ALERT, description="btn -> alert")
-        self.btn_confirm_elem = Button(driver=self.browser.driver, locator=self.LOC_CONFIRM, description="btn -> confirm")
-        self.alert_res = Label(driver=self.browser.driver, locator=self.LOC_RESULT, description="Alert -> result")
-
+        self.alert_btn_elem = Button(self.browser, locator=self.LOC_ALERT, description="btn alert  -> call alert")
+        self.btn_confirm_elem = Button(self.browser, locator=self.LOC_CONFIRM,
+                                       description="btn confirm -> call confirm")
+        self.alert_res_elem = Label(self.browser, locator=self.LOC_RESULT, description="Alert confirm  -> result")
 
     def click_btn_alert(self):
-         self.alert_btn_elem.js_click()
+        self.alert_btn_elem.js_click()
 
     def get_result_text(self):
-          self.alert_res.get_text()
-
+        return self.alert_res_elem.get_text()
 
     def confirm_btn(self):
-        return self.btn_confirm_elem.js_click()
+        self.btn_confirm_elem.js_click()

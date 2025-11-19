@@ -17,21 +17,21 @@ class UploadPagePro(BasePage):
         self.browser = browser
         self.page_name = 'upload file pro'
 
-        self.unique_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM,
+        self.unique_elem = Label(self.browser, self.LOC_UNIQUE_ELEM,
                                  'Open Page -> show unique file')
-        self.load_file = WebElement(self.browser.driver, self.LOC_FILE_INPUT,
+        self.load_file = WebElement(self.browser, self.LOC_FILE_INPUT,
                                     'load input -> file upload')
-        self.btn_input = Button(self.browser.driver, self.LOC_BTN_INPUT,
+        self.btn_input = Button(self.browser, self.LOC_BTN_INPUT,
                                 'click submit -> file upload')
-        self.text_result = Label(self.browser.driver, self.LOC_RESULT_TEXT,
+        self.text_result = Label(self.browser, self.LOC_RESULT_TEXT,
                                  'Open new  Page -> show text result')
-        self.file_name = Label(self.browser.driver, self.LOC_NAME_FILE,
+        self.file_name = Label(self.browser, self.LOC_NAME_FILE,
                                'Open new  Page -> file upload name text')
 
     def file_load_set(self, file_path):
-        self.load_file.click_elem()
-        self.btn_input.click_elem()
+        self.load_file.click()
         pyauto.PyAutoGui.upload_file(file_path)
+        self.btn_input.click()
 
     def get_text_result(self):
         return self.text_result.get_text()

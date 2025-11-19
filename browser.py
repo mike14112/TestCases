@@ -65,9 +65,11 @@ class Browser:
         try:
             Logger.info(f'Wait alert')
             wait = WebDriverWait(self.driver, config.get('wait'))
-            return wait.until(EC.alert_is_present())
+            alert = wait.until(EC.alert_is_present())
+            return alert
         except NoAlertPresentException:
-            return True
+            return Logger.error('NoAlertPresentException')
+
 
     def get_text_alert(self):
         Logger.info("Get text alert")

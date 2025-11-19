@@ -17,26 +17,33 @@ class ScrollPage(BasePage):
         self.page_name = 'scroll page'
         self.actions = Actions(browser)
 
-        self.unique_elem = Label(self.browser.driver,
+        self.unique_elem = Label(self.browser,
                                  self.LOC_UNIQUE_ELEM, 'open page -> show unique element')
-        self.btn_scroll = WebElement(self.browser.driver,
+        self.btn_scroll = WebElement(self.browser,
                                      self.LOC_SCROLL_ELEM, 'open page -> show scroll element')
-        self.paragraph_elem = WebElement(self.browser.driver,
+        self.paragraph_elem = WebElement(self.browser,
                                          self.LOC_PARAGRAPH_ELEM, 'scroll page -> show paragraph element')
 
-    def body_key_down(self):
-        return self.actions.key_down(self.btn_scroll)
+    def key_down(self):
+        self.actions.key_down(self.btn_scroll)
+
+    def scroll_in_to(self):
+        self.btn_scroll.scroll_to_in_to()
 
     def get_paragraph(self, number):
         result = []
         while len(result) < number:
-            soup = BeautifulSoup(self.paragraph_elem.get_attribute('innerHTML'), 'html.parser')
+            html = self.paragraph_elem.get_attribute('innerHtml')
+            if not html:
+                self.key_down()
+                continue
+            soup = BeautifulSoup(html, 'html.parser')
             rows = soup.find_all('br')
 
             for row in rows:
                 result.append(row)
                 if len(result) >= number:
                     break
-            self.body_key_down()
+            self.scroll_in_to()
 
         return result

@@ -12,8 +12,8 @@ class DynamicPage(BasePage):
         self.browser = browser
         self.page_name = 'Dynamic Page'
 
-        self.unique_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM, 'open url -> unique element')
-        self.imgs = MultiWebElements(self.browser.driver, self.LOC_IMGS, 'page show -> show img  ')
+        self.unique_elem = Label(self.browser, self.LOC_UNIQUE_ELEM, 'open url -> unique element')
+        self.imgs = MultiWebElements(self.browser, self.LOC_IMGS, 'page show -> show img  ')
 
     def get_all_src(self):
         return [img.get_attribute('src') for img in self.imgs]

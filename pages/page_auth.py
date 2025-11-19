@@ -10,5 +10,5 @@ class AuthPage(BasePage):
         self.browser = browser
         self.page_name = 'Auth Page'
 
-        self.unique_elem = Label(driver=self.browser.driver, locator=self.LOC_UNIQUE_ELEM,
+        self.unique_elem = Label(self.browser, locator=self.LOC_UNIQUE_ELEM,
                                  description="open url -> unique element")

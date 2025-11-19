@@ -15,10 +15,10 @@ class ContextPage(BasePage):
         self.page_name = 'context page'
         self.actions = Actions(self.browser)
 
-        self.unique_elem = Label(driver=self.browser.driver, locator=self.LOC_UNIQUE_ELEM,
+        self.unique_elem = Label(self.browser, locator=self.LOC_UNIQUE_ELEM,
                                  description='open page -> opening')
-        self.area_elem = WebElement(driver=self.browser.driver, locator=self.LOC_AREA_ELEM,
-                               description='area -> context  area')
+        self.area_elem = WebElement(self.browser, locator=self.LOC_AREA_ELEM,
+                               description='area -> border area')
 
-    def click_context(self):
-        return self.actions.click_context(self.area_elem)
+    def click_border(self):
+         self.actions.click_context(self.area_elem)

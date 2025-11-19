@@ -15,7 +15,6 @@ def test_alert(browser):
     page.wait_for_open()
     page.click_btn_alert()
     browser.switch_alert()
-    page.wait_for_open()
     browser.confirm_alert()
     result_alert = page.get_result_wait()
     assert EXCEPT_ALERT_RESULT in result_alert, f'Expected{EXCEPT_ALERT_RESULT} is not in actual {result_alert}'

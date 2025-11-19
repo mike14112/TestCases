@@ -11,14 +11,14 @@ class Actions:
 
     def key_down(self, element: WebElement):
         try:
-            return ActionChains(self.driver).key_down(Keys.ARROW_DOWN, element.visibility_of_elem()).perform()
+            return ActionChains(self.driver).key_down(Keys.ARROW_DOWN, element.wait_for_visibility()).perform()
         except TimeoutException:
             return Logger.error(f'Timeout exception occurred: not found element {element}')
 
     def key_right(self, element: WebElement):
         try:
             Logger.info('Move to element')
-            return ActionChains(self.driver).send_keys_to_element(element.visibility_of_elem(),
+            return ActionChains(self.driver).send_keys_to_element(element.wait_for_visibility(),
                                                                   Keys.ARROW_RIGHT).perform()
         except TimeoutException:
             return Logger.error(f'Timeout exception occurred: not found element {element}')
@@ -26,7 +26,7 @@ class Actions:
     def click_context(self, element: WebElement):
         try:
             Logger.info('context_click')
-            return ActionChains(self.driver).context_click(element.visibility_of_elem()).perform()
+            return ActionChains(self.driver).context_click(element.wait_for_visibility()).perform()
         except TimeoutException:
             return Logger.error(f'Timeout exception occurred: not found element {element}')
 

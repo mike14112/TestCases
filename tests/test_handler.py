@@ -8,7 +8,7 @@ config = ConfigReader(env=Env.DEV.value)
 
 
 def test_handler(browser):
-    page = PageHandler(browser.driver)
+    page = PageHandler(browser)
     browser.get(config.get('handlers_url'))
     page.wait_for_open()
     page.click_btn()

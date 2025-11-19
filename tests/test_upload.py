@@ -12,8 +12,8 @@ def test_upload(browser):
     page = UploadPage(browser)
     browser.get(config.get('upload_url'))
     page.wait_for_open()
-    page.set_load_file('assets/f1.jpg')
-    page.set_click_btn()
+    page.send_load_file(file_path)
+    page.click_btn()
     actual_res = page.get_text_result()
     assert EXCEPT_RESULT in actual_res, f'Expected {EXCEPT_RESULT} is not {actual_res}'
     actual_file_name = page.get_file_name()

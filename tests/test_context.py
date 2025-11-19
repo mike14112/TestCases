@@ -11,7 +11,6 @@ def test_page_context(browser):
     page = ContextPage(browser)
     browser.get(config.get('context_url'))
     page.wait_for_open()
-    page.click_context()
+    page.click_border()
     actual_alert = browser.get_text_alert().lower().strip()
     assert EXCEPT_ALERT in actual_alert, f'Expected :{EXCEPT_ALERT} not in {actual_alert}'
-

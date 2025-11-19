@@ -15,22 +15,22 @@ class PageJsAlert(BasePage):
         self.browser = browser
         self.page_name = 'Page  js Alert'
 
-        self.unique_elem = Label(driver=self.browser.driver,
+        self.unique_elem = Label(self.browser,
                                  locator=self.LOC_UNIQUE_ELEM, description="open url -> unique element")
-        self.alert_btn_elem = Button(driver=self.browser.driver, locator=self.LOC_ALERT, description="btn -> alert")
-        self.btn_confirm_elem = Button(driver=self.browser.driver, locator=self.LOC_CONFIRM,
-                                       description="btn -> confirm")
+        self.alert_btn_elem = Button(self.browser, locator=self.LOC_ALERT, description="btn alert -> alert")
+        self.btn_confirm_elem = Button(self.browser, locator=self.LOC_CONFIRM,
+                                       description="btn confirm -> confirm")
 
-        self.alert_res = Label(driver=self.browser.driver, locator=self.LOC_RESULT, description="Alert -> result")
-
-    def wait_unique(self):
-        return self.unique_elem.get_text()
+        self.alert_res = Label(self.browser, locator=self.LOC_RESULT, description="Alert confirm -> result")
 
     def click_btn_alert(self):
-        return self.alert_btn_elem.js_click()
+        self.alert_btn_elem.js_click()
 
-    def result_wait(self):
-        return self.alert_res.get_text()
+    def get_text(self):
+        return self.alert_res.get_text().lower().strip()
 
     def btn_confirm(self):
-        return self.btn_confirm_elem.click_elem()
+        self.btn_confirm_elem.click()
+
+    def get_res_text(self):
+        return self.alert_res.get_text().lower().strip()

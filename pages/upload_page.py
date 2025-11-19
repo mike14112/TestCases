@@ -14,27 +14,24 @@ class UploadPage(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
         self.browser = browser
-        self.page_name ='upload file'
+        self.page_name = 'upload file'
 
-        self.unique_elem = Label(self.browser.driver, self.LOC_UNIQUE_ELEM,
+        self.unique_elem = Label(self.browser, self.LOC_UNIQUE_ELEM,
                                  'Open Page -> show unique file')
-        self.load_file = WebElement(self.browser.driver, self.LOC_FILE_INPUT,
+        self.load_file = WebElement(self.browser, self.LOC_FILE_INPUT,
                                     'load input -> file upload')
-        self.btn_input = Button(self.browser.driver, self.LOC_BTN_INPUT,
+        self.btn_input = Button(self.browser, self.LOC_BTN_INPUT,
                                 'click submit -> file upload')
-        self.text_result = Label(self.browser.driver, self.LOC_RESULT_TEXT,
+        self.text_result = Label(self.browser, self.LOC_RESULT_TEXT,
                                  'Open new  Page -> show text result')
-        self.file_name = Label(self.browser.driver, self.LOC_NAME_FILE,
+        self.file_name = Label(self.browser, self.LOC_NAME_FILE,
                                'Open new  Page -> file upload name text')
 
-    def get_unique_elem(self):
-        return self.unique_elem.visibility_of_elem()
+    def send_load_file(self, file_name):
+        return self.load_file.wait_for_visibility().send_keys(file_name)
 
-    def set_load_file(self, file_name):
-        return self.load_file.visibility_of_elem().send_keys(file_name)
-
-    def set_click_btn(self):
-        return self.btn_input.click_elem()
+    def click_btn(self):
+        self.btn_input.click()
 
     def get_text_result(self):
         return self.text_result.get_text()
