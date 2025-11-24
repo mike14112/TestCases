@@ -28,9 +28,9 @@ class UploadPage(BasePage):
                                'Open new  Page -> file upload name text')
 
     def send_load_file(self, file_name):
-        return self.load_file.wait_for_visibility().send_keys(file_name)
+        return self.load_file.send_keys(file_name)
 
-    def click_btn(self):
+    def click_btn_submit(self):
         self.btn_input.click()
 
     def get_text_result(self):

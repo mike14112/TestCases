@@ -44,7 +44,7 @@ class IFramePage(BasePage):
                                 description=' open  page frame -> show frame text')
 
         self.parent_frame = WebElement(self.browser, self.LOC_PARENT_FRAME,
-                                description='wait for open  -> show  frames elements')
+                                       description='wait for open  -> show  frames elements')
 
         self.child_frame = WebElement(self.browser, self.LOC_CHILD_FRAME, 'parent frame -> child frame')
 

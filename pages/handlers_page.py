@@ -18,8 +18,8 @@ class PageHandler(BasePage):
                                      description='btn new window -> open new window')
         self.text_main_page = Label(self.browser, self.LOC_ELEM_TEXT, description='open page -> text main page')
 
-    def get_text_elem(self):
+    def get_text(self):
         return self.text_main_page.get_text().lower().strip()
 
-    def click_btn(self):
+    def click_btn_window(self):
         self.btn_new_window.click()

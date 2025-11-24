@@ -11,15 +11,15 @@ def test_handler(browser):
     page = PageHandler(browser)
     browser.get(config.get('handlers_url'))
     page.wait_for_open()
-    page.click_btn()
+    page.click_btn_window()
     browser.switch_window(1)
     actual_window1 = browser.get_title_window().lower().strip()
     assert EXCEPT_WINDOW in actual_window1
-    actual_elem_window = page.get_text_elem()
+    actual_elem_window = page.get_text()
     assert EXCEPT_WINDOW in actual_elem_window, f'Expected {EXCEPT_WINDOW} is not in {actual_elem_window}'
     browser.switch_window(0)
 
-    page.click_btn()
+    page.click_btn_window()
     browser.switch_window(2)
     assert EXCEPT_WINDOW in actual_window1, f'Expected {EXCEPT_WINDOW} is not in {actual_window1}'
     browser.switch_window(0)

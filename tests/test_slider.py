@@ -12,4 +12,3 @@ def test_slider(browser):
     number = page.get_min_step()
     number2 = page.get_max_step()
     page.move_to_slider(number, number2)
- 

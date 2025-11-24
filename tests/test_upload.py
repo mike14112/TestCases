@@ -5,15 +5,15 @@ from utils.env import Env
 config = ConfigReader(env=Env.DEV.value)
 EXCEPT_RESULT = 'File Uploaded!'.lower().strip()
 EXCEPT_FILE_NAME = 'f1'.lower().strip()
-file_path = "assets/f1.jpg"
+FILE_PATH = "assets/f1.jpg"
 
 
 def test_upload(browser):
     page = UploadPage(browser)
     browser.get(config.get('upload_url'))
     page.wait_for_open()
-    page.send_load_file(file_path)
-    page.click_btn()
+    page.send_load_file(FILE_PATH)
+    page.click_btn_submit()
     actual_res = page.get_text_result()
     assert EXCEPT_RESULT in actual_res, f'Expected {EXCEPT_RESULT} is not {actual_res}'
     actual_file_name = page.get_file_name()

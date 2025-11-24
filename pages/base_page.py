@@ -1,3 +1,4 @@
+from elements.action_chains import Actions
 from logger.logger import Logger
 
 
@@ -8,7 +9,8 @@ class BasePage:
         self.browser = browser
         self.page_name = None
         self.unique_elem = None
+        self.actions = Actions(self.browser)
 
     def wait_for_open(self):
         Logger.info(f'{self.page_name} waiting for open')
-        return self.unique_elem.presence_of_element()
+        return self.unique_elem.wait_presence()

@@ -1,6 +1,7 @@
 from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains, Keys
 
+from elements.button import Button
 from elements.web_element import WebElement
 from logger.logger import Logger
 
@@ -30,7 +31,7 @@ class Actions:
         except TimeoutException:
             return Logger.error(f'Timeout exception occurred: not found element {element}')
 
-    def move_to_element(self, element: WebElement):
+    def move_to_element(self, element: WebElement | Button):
         try:
             return ActionChains(self.driver).move_to_element(element).perform()
         except TimeoutException:

@@ -17,17 +17,16 @@ class HoversPage(BasePage):
         self.page_name = 'hovers page'
         self.actions = Actions(self.browser)
 
-        self.unique_elem = Label(self.browser, self.LOC_UNIQUE_ELEM, description='open url -> unique element')
-
+        self.unique_elem = Label(self.browser, self.LOC_UNIQUE_ELEM, description='wait for open -> unique element')
 
     def hover_user(self, index):
         loq_user = self.LOC_USER_ELEM.format(index)
-        elem = WebElement(self.browser, loq_user, description='mouse to ->  user')
+        elem = WebElement(self.browser, loq_user, description=f'main img  ->  user number{index}')
         self.actions.move_to_element(elem.wait_for_visibility())
 
     def get_user_info(self, index):
         loq_user_text = self.LOC_USER_TEXT.format(index)
-        hover_user = Label(self.browser, loq_user_text, description='user -> user hover text')
+        hover_user = Label(self.browser, loq_user_text, description=f'user -> user hover text {index}')
         return hover_user.get_text().lower().strip()
 
     def open_user_link(self, index):

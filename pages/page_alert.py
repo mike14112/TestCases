@@ -25,8 +25,7 @@ class PageAlert(BasePage):
     def click_btn_alert(self):
          self.alert_btn_elem.click()
 
-    def get_result_wait(self):
+    def get_result(self):
         return self.alert_res.get_text().lower().strip()
-
-    def btn_confirm(self):
+    def click_btn_confirm(self):
          self.btn_confirm_elem.click()

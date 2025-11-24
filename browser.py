@@ -43,13 +43,13 @@ class Browser:
         Logger.info(f"Switch {index} window")
         self.driver.switch_to.window(self.driver.window_handles[index])
 
-    def get_title_window(self):
+    def get_title(self):
         Logger.info("Get title window")
         return self.driver.title
 
     def switch_frame(self, frame: BaseElement):
         Logger.info("Switch frame")
-        return self.driver.switch_to.frame(frame.presence_of_element())
+        return self.driver.switch_to.frame(frame.wait_presence())
 
     def switch_to_default_content(self):
         Logger.info("Switch to default content")
@@ -68,8 +68,8 @@ class Browser:
             alert = wait.until(EC.alert_is_present())
             return alert
         except NoAlertPresentException:
-            return Logger.error('NoAlertPresentException')
-
+            Logger.error('NoAlertPresentException')
+            raise
 
     def get_text_alert(self):
         Logger.info("Get text alert")
@@ -79,7 +79,7 @@ class Browser:
         Logger.info("Cancel alert")
         self.switch_alert().dismiss()
 
-    def write_text_and_confirm(self, text):
+    def write_confirm_text_and_confirm(self, text):
         self.switch_alert().send_keys(text)
         self.confirm_alert()
         Logger.info("Write text and confirm")

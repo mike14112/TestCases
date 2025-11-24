@@ -26,15 +26,6 @@ class BaseElement:
         else:
             self.locator = locator
 
-    def wait_for_presence_fast_pull(self):
-        try:
-            Logger.info('Element fast wait is {}'.format(self.description))
-            return WebDriverWait(self.browser.driver, self.fast_wait).until(
-                EC.presence_of_element_located(self.locator))
-        except TimeoutException:
-            Logger.error('Element fast wait is not found')
-            raise
-
     def wait_for_visibility(self):
         try:
             Logger.info(f'self.description: {self.description}')
@@ -43,7 +34,7 @@ class BaseElement:
             Logger.error(f'{self.description} is not found')
             raise
 
-    def presence_of_element(self):
+    def wait_presence(self):
         try:
             Logger.info(f'self.description: {self.description}')
             return WebDriverWait(self.browser.driver, self.wait).until(EC.presence_of_element_located(self.locator))
@@ -53,7 +44,7 @@ class BaseElement:
 
     def get_text(self):
         try:
-            element = self.presence_of_element()
+            element = self.wait_presence()
             Logger.info(f'self.description: {self.description}')
             return element.text
         except TimeoutException:
@@ -62,8 +53,9 @@ class BaseElement:
 
     def click(self):
         try:
+            elements = self.wait_presence()
             Logger.info(f'self.description: {self.description}')
-            return WebDriverWait(self.browser.driver, self.wait).until(EC.element_to_be_clickable(self.locator)).click()
+            return elements.click()
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
             raise
@@ -71,26 +63,33 @@ class BaseElement:
     def js_click(self):
         try:
 
-            element = self.presence_of_element()
+            element = self.wait_presence()
             Logger.info(f'js click, self.description: {self.description} ')
             return self.browser.driver.execute_script('return arguments[0].click();', element)
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
             raise
 
-    def scroll_to_in_to(self):
+    def scroll_to(self):
         try:
-            element = self.presence_of_element()
+            element = self.wait_presence()
             Logger.info(f'self.description: {self.description}')
             return self.browser.driver.execute_script('return arguments[0].scrollIntoView();', element)
         except TimeoutException:
             Logger.error(f'{self.description} is not found')
             raise
+    def send_keys(self, keys):
+        try:
+            element = self.wait_presence()
+            Logger.info(f'self.description: {self.description}')
+            return element.send_keys(keys)
+        except TimeoutException:
+            Logger.error(f'{self.description} is not found')
+            raise
 
     def get_attribute(self, attribute):
-
         try:
-            element = self.presence_of_element()
+            element = self.wait_presence()
             Logger.info(f'self.description: {self.description}')
             element.get_attribute(attribute)
 
@@ -100,7 +99,7 @@ class BaseElement:
 
     def get_property(self, attribute):
         try:
-            element = self.presence_of_element()
+            element = self.wait_presence()
             Logger.info(f'self.description: {self.description}')
             return element.get_attribute(attribute)
 
@@ -111,7 +110,7 @@ class BaseElement:
     def is_exists(self):
         try:
             Logger.info(f'self.description: {self.description}')
-            self.presence_of_element()
+            self.wait_presence()
             return True
         except TimeoutException:
             Logger.error(f'{self.description} is not found')

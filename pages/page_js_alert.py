@@ -29,7 +29,7 @@ class PageJsAlert(BasePage):
     def get_text(self):
         return self.alert_res.get_text().lower().strip()
 
-    def btn_confirm(self):
+    def click_btn_confirm(self):
         self.btn_confirm_elem.click()
 
     def get_res_text(self):

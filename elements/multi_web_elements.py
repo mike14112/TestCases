@@ -18,7 +18,6 @@ class MultiWebElements:
                        self.formatable_xpath.format(self.index),
                        f'{self.description}{self.index}'))
 
-
         if not current_elem.is_exists():
             raise StopIteration
         else:
@@ -27,6 +26,3 @@ class MultiWebElements:
 
     def __str__(self):
         return f'descriptions {self.description} index {self.index}'
-
-
-

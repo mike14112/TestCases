@@ -29,5 +29,5 @@ class AlertJsPage(BasePage):
     def get_result_text(self):
         return self.alert_res_elem.get_text()
 
-    def confirm_btn(self):
+    def click_btn_confirm(self):
         self.btn_confirm_elem.js_click()

@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 
-from elements.action_chains import Actions
 from elements.label import Label
 from elements.web_element import WebElement
 from pages.base_page import BasePage
@@ -15,7 +14,6 @@ class ScrollPage(BasePage):
         super().__init__(browser)
         self.browser = browser
         self.page_name = 'scroll page'
-        self.actions = Actions(browser)
 
         self.unique_elem = Label(self.browser,
                                  self.LOC_UNIQUE_ELEM, 'open page -> show unique element')
@@ -27,8 +25,8 @@ class ScrollPage(BasePage):
     def key_down(self):
         self.actions.key_down(self.btn_scroll)
 
-    def scroll_in_to(self):
-        self.btn_scroll.scroll_to_in_to()
+    def scroll_to_end(self):
+        self.btn_scroll.scroll_to()
 
     def get_paragraph(self, number):
         result = []
@@ -44,6 +42,6 @@ class ScrollPage(BasePage):
                 result.append(row)
                 if len(result) >= number:
                     break
-            self.scroll_in_to()
+            self.scroll_in_end()
 
         return result
