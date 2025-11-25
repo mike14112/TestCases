@@ -11,6 +11,5 @@ class BrowserFactory:
     @staticmethod
     def get_browser_instance():
         options = Options()
-        options.add_argument('headless')
         options.add_argument('screen_size')
         return webdriver.Chrome(options=options)

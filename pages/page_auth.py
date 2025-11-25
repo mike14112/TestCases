@@ -11,4 +11,4 @@ class AuthPage(BasePage):
         self.page_name = 'Auth Page'
 
         self.unique_elem = Label(self.browser, locator=self.LOC_UNIQUE_ELEM,
-                                 description="open url -> unique element")
+                                 description="wait for open  -> unique element")

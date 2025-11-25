@@ -13,7 +13,7 @@ class ContextPage(BasePage):
         self.page_name = 'context page'
 
         self.unique_elem = Label(self.browser, locator=self.LOC_UNIQUE_ELEM,
-                                 description='open page -> opening')
+                                 description='wait for open  -> unique element')
         self.area_elem = WebElement(self.browser, locator=self.LOC_AREA_ELEM,
                                     description='area -> border area')
 

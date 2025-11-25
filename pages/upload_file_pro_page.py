@@ -18,15 +18,15 @@ class UploadPagePro(BasePage):
         self.page_name = 'upload file pro'
 
         self.unique_elem = Label(self.browser, self.LOC_UNIQUE_ELEM,
-                                 'Open Page -> show unique file')
+                                 'wait for Open Page -> show unique file')
         self.load_file = WebElement(self.browser, self.LOC_FILE_INPUT,
                                     'load input -> file upload')
         self.btn_input = Button(self.browser, self.LOC_BTN_INPUT,
                                 'click submit -> file upload')
         self.text_result = Label(self.browser, self.LOC_RESULT_TEXT,
-                                 'Open new  Page -> show text result')
+                                 'wait for open  Page -> show text result')
         self.file_name = Label(self.browser, self.LOC_NAME_FILE,
-                               'Open new  Page -> file upload name text')
+                               'wait for open new  Page -> file upload name text')
 
     def file_load_set(self, file_path):
         self.load_file.click()

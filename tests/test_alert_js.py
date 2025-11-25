@@ -18,7 +18,7 @@ def test_alert(browser):
     actual_alert = browser.get_text_alert().lower().strip()
     assert EXCEPT_ALERT in actual_alert, f'Expected {EXCEPT_ALERT} is not in actual {actual_alert}'
     browser.confirm_alert()
-    result_alert = page.get_text()
+    result_alert = page.get_res_text()
     assert EXCEPT_ALERT_RESULT in result_alert, f'Expected {EXCEPT_ALERT_RESULT} is not in actual {result_alert}'
     page.click_btn_confirm()
     browser.switch_alert()

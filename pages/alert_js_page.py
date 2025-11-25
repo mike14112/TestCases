@@ -17,7 +17,7 @@ class AlertJsPage(BasePage):
         self.page_name = 'alert js page'
 
         self.unique_elem = Label(self.browser,
-                                 locator=self.LOC_UNIQUE_ELEM, description="unique elem")
+                                 locator=self.LOC_UNIQUE_ELEM, description=" wait for open -> unique elem")
         self.alert_btn_elem = Button(self.browser, locator=self.LOC_ALERT, description="btn alert  -> call alert")
         self.btn_confirm_elem = Button(self.browser, locator=self.LOC_CONFIRM,
                                        description="btn confirm -> call confirm")

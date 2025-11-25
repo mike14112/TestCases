@@ -12,5 +12,5 @@ class BasePage:
         self.actions = Actions(self.browser)
 
     def wait_for_open(self):
-        Logger.info(f'{self.page_name} waiting for open')
-        return self.unique_elem.wait_presence()
+        Logger.info(f'{self.page_name} waiting for open -> unique element {self.unique_elem}')
+        return self.unique_elem.wait_for_presence()

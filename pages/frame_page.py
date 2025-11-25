@@ -23,7 +23,7 @@ class IFramePage(BasePage):
         self.page_name = 'IFrame Page'
 
         self.unique_elem = Label(self.browser, self.LOC_UNIQUE_ELEM,
-                                 description='open browser -> unique elem')
+                                 description='wait for open -> unique elem')
         self.btn_list_alerts = Button(self.browser, self.LOC_BTN_ALERT_LIST,
                                       description='click btn list frames -> show list alerts and frames')
         self.btn_nested_frames = Button(self.browser, self.LOC_BTN_NESTED_FRAMES,

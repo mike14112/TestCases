@@ -32,4 +32,4 @@ class HoversPage(BasePage):
     def open_user_link(self, index):
         loq_user_link = self.LOC_LINK_USER.format(index)
         link_user = Button(self.browser, loq_user_link, description=f'user -> user index: {index} ')
-        return link_user.click()
+        link_user.click()

@@ -12,7 +12,7 @@ class DynamicPage(BasePage):
         self.browser = browser
         self.page_name = 'Dynamic Page'
 
-        self.unique_elem = Label(self.browser, self.LOC_UNIQUE_ELEM, 'open url -> unique element')
+        self.unique_elem = Label(self.browser, self.LOC_UNIQUE_ELEM, 'wait for open -> unique element')
         self.imgs = MultiWebElements(self.browser, self.LOC_IMGS, 'page show -> show img  ')
 
     def get_all_src(self):

@@ -16,13 +16,13 @@ class ScrollPage(BasePage):
         self.page_name = 'scroll page'
 
         self.unique_elem = Label(self.browser,
-                                 self.LOC_UNIQUE_ELEM, 'open page -> show unique element')
+                                 self.LOC_UNIQUE_ELEM, 'wait for open -> show unique element')
         self.btn_scroll = WebElement(self.browser,
-                                     self.LOC_SCROLL_ELEM, 'open page -> show scroll element')
+                                     self.LOC_SCROLL_ELEM, 'div paragraph elem -> show scroll elements')
         self.paragraph_elem = WebElement(self.browser,
                                          self.LOC_PARAGRAPH_ELEM, 'scroll page -> show paragraph element')
 
-    def key_down(self):
+    def key_down_div_paragraph(self):
         self.actions.key_down(self.btn_scroll)
 
     def scroll_to_end(self):
@@ -33,7 +33,7 @@ class ScrollPage(BasePage):
         while len(result) < number:
             html = self.paragraph_elem.get_attribute('innerHtml')
             if not html:
-                self.key_down()
+                self.key_down_div_paragraph()
                 continue
             soup = BeautifulSoup(html, 'html.parser')
             rows = soup.find_all('br')
@@ -42,6 +42,6 @@ class ScrollPage(BasePage):
                 result.append(row)
                 if len(result) >= number:
                     break
-            self.scroll_in_end()
+            self.scroll_to_end()
 
         return result

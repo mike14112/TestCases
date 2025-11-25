@@ -16,6 +16,14 @@ class Actions:
         except TimeoutException:
             return Logger.error(f'Timeout exception occurred: not found element {element}')
 
+    def key_left(self, element: WebElement):
+        try:
+            Logger.info(f'Key left element {element}')
+            return ActionChains(self.driver).send_keys(element.wait_for_visibility(),
+                                                       Keys.ARROW_LEFT).perform()
+        except TimeoutException:
+            return Logger.error(f'Timeout exception occurred: not found element {element}')
+
     def key_right(self, element: WebElement):
         try:
             Logger.info('Move to element')

@@ -16,16 +16,17 @@ class PageAlert(BasePage):
         self.page_name = 'Page Alert'
 
         self.unique_elem = Label(self.browser,
-                                 locator=self.LOC_UNIQUE_ELEM, description="open url -> unique element")
+                                 locator=self.LOC_UNIQUE_ELEM, description="wait for open -> unique element")
         self.alert_btn_elem = Button(self.browser, locator=self.LOC_ALERT, description="btn -> alert")
         self.btn_confirm_elem = Button(self.browser, locator=self.LOC_CONFIRM,
                                        description="btn -> confirm")
         self.alert_res = Label(self.browser, locator=self.LOC_RESULT, description="Alert -> result")
 
     def click_btn_alert(self):
-         self.alert_btn_elem.click()
+        self.alert_btn_elem.click()
 
-    def get_result(self):
+    def get_result_text(self):
         return self.alert_res.get_text().lower().strip()
+
     def click_btn_confirm(self):
-         self.btn_confirm_elem.click()
+        self.btn_confirm_elem.click()
