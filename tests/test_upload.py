@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from pages.upload_page import UploadPage
 from utils.config_reader import ConfigReader
 from utils.env import Env
@@ -5,7 +7,7 @@ from utils.env import Env
 config = ConfigReader(env=Env.DEV.value)
 EXCEPT_RESULT = 'File Uploaded!'.lower().strip()
 EXCEPT_FILE_NAME = 'f1'.lower().strip()
-FILE_PATH = "assets/f1.jpg"
+FILE_PATH = str(Path(__file__).resolve().parents[1] / "assets" / "f1.jpg")
 
 
 def test_upload(browser):

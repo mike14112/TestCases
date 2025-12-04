@@ -1,3 +1,8 @@
+import os
+from pathlib import Path
+
+import pytest
+
 from pages.upload_file_pro_page import UploadPagePro
 from utils.config_reader import ConfigReader
 from utils.env import Env
@@ -5,9 +10,10 @@ from utils.env import Env
 config = ConfigReader(env=Env.DEV.value)
 EXCEPT_RESULT = 'File Uploaded!'.lower().strip()
 EXCEPT_FILE_NAME = 'f1'.lower().strip()
-FILE_PATH = "assets/f1.jpg"
+FILE_PATH = str(Path(__file__).resolve().parents[1] / "assets" / "f1.jpg")
 
 
+@pytest.mark.skipif('DISPLAY' not in os.environ, reason="Нет графического дисплея (Docker)")
 def test_upload_pro(browser):
     page = UploadPagePro(browser)
     browser.get(config.get('upload_url'))

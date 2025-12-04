@@ -10,4 +10,5 @@ def test_scroll(browser):
     page = ScrollPage(browser)
     browser.get(config.get('scroll_url'))
     page.wait_for_open()
-    page.get_paragraph(NUMBER)
+    count_paragraphs =  page.get_paragraph(NUMBER)
+    assert len(count_paragraphs) == NUMBER, f'Expected :{NUMBER} not in {count_paragraphs} '

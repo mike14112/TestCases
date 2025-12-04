@@ -18,9 +18,9 @@ class Actions:
 
     def key_left(self, element: WebElement):
         try:
-            Logger.info(f'Key left element {element}')
-            return ActionChains(self.driver).send_keys(element.wait_for_visibility(),
-                                                       Keys.ARROW_LEFT).perform()
+            Logger.info('Move to element')
+            return ActionChains(self.driver).send_keys_to_element(element.wait_for_visibility(),
+                                                                  Keys.ARROW_LEFT).perform()
         except TimeoutException:
             return Logger.error(f'Timeout exception occurred: not found element {element}')
 
@@ -41,6 +41,6 @@ class Actions:
 
     def move_to_element(self, element: WebElement | Button):
         try:
-            return ActionChains(self.driver).move_to_element(element).perform()
+            return ActionChains(self.driver).move_to_element(element.wait_for_visibility()).perform()
         except TimeoutException:
             return Logger.error(f'Timeout exception occurred: not found element {element}')

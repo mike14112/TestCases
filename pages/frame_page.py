@@ -11,7 +11,7 @@ class IFramePage(BasePage):
     LOC_UNIQUE_ELEM_NESTED_FRAME = "//*[@id='framesWrapper']//h1"
     LOC_PARENT_FRAME_TEXT = "//body[contains(text(), 'Parent frame')]"
     LOC_CHILD_FRAME_TEXT = "//*[contains(text(), 'Child Iframe')]"
-    LOC_FRAME_ELEM = "//span[contains(text(), 'Frames')]"
+    LOC_BTN_FRAME_ELEM = "(//span[contains(text(), 'Frames')])[1]"
     LOC_FRAME_UNIQUE_PAGE = "//*[@id='framesWrapper']//h1"
     LOC_TEXT_FRAME = 'sampleHeading'
     LOC_PARENT_FRAME = 'frame1'
@@ -36,7 +36,7 @@ class IFramePage(BasePage):
                                        description='switch from parent frame to text parent frame')
         self.child_frame_text = WebElement(self.browser, self.LOC_CHILD_FRAME_TEXT,
                                            description='switch to child frames -> child frame')
-        self.frame_elem = Button(self.browser, self.LOC_FRAME_ELEM,
+        self.frame_elem = Button(self.browser, self.LOC_BTN_FRAME_ELEM,
                                  description='click frame elem -> page open frame')
         self.unique_elem_frame_text = Label(self.browser, self.LOC_FRAME_UNIQUE_PAGE,
                                             description='click frame elem -> show unique elem page')

@@ -7,8 +7,8 @@ from pages.base_page import BasePage
 
 class ScrollPage(BasePage):
     LOC_UNIQUE_ELEM = "//*[@id='content']//h3"
-    LOC_SCROLL_ELEM = "//*[contains(@class, 'jscroll-inner')]"
-    LOC_PARAGRAPH_ELEM = "//*[contains(@class, 'jscroll-added')]"
+    LOC_ALL_PARAGRAPH = "//div[contains(@class, 'jscroll-inner')]"
+    LOC_PARAGRAPH_ELEM = "//div[contains(@class, 'jscroll-added')]"
 
     def __init__(self, browser):
         super().__init__(browser)
@@ -17,31 +17,16 @@ class ScrollPage(BasePage):
 
         self.unique_elem = Label(self.browser,
                                  self.LOC_UNIQUE_ELEM, 'wait for open -> show unique element')
-        self.btn_scroll = WebElement(self.browser,
-                                     self.LOC_SCROLL_ELEM, 'div paragraph elem -> show scroll elements')
+        self.all_paragraph_elem = WebElement(self.browser,
+                                             self.LOC_ALL_PARAGRAPH,
+                                             'div paragraph elem -> show main  div elements')
         self.paragraph_elem = WebElement(self.browser,
                                          self.LOC_PARAGRAPH_ELEM, 'scroll page -> show paragraph element')
 
-    def key_down_div_paragraph(self):
-        self.actions.key_down(self.btn_scroll)
-
-    def scroll_to_end(self):
-        self.btn_scroll.scroll_to()
-
     def get_paragraph(self, number):
-        result = []
-        while len(result) < number:
-            html = self.paragraph_elem.get_attribute('innerHtml')
-            if not html:
-                self.key_down_div_paragraph()
-                continue
-            soup = BeautifulSoup(html, 'html.parser')
-            rows = soup.find_all('br')
-
-            for row in rows:
-                result.append(row)
-                if len(result) >= number:
-                    break
-            self.scroll_to_end()
-
-        return result
+        while True:
+            self.all_paragraph_elem.scroll_to()
+            soup = BeautifulSoup(self.all_paragraph_elem.get_attribute('innerHTML'), 'html.parser')
+            rows = soup.find_all(class_='jscroll-added')
+            if len(rows) == number:
+                return rows

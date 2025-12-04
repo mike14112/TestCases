@@ -11,5 +11,7 @@ class BrowserFactory:
     @staticmethod
     def get_browser_instance():
         options = Options()
-        options.add_argument('screen_size')
+        options.add_argument(config.get("screen_size"))
+        options.add_argument(config.get("headless"))
+        options.add_argument(config.get("no_sandbox"))
         return webdriver.Chrome(options=options)

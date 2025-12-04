@@ -34,7 +34,7 @@ class UploadPage(BasePage):
         self.btn_input.click()
 
     def get_text_result(self):
-        return self.text_result.get_text()
+        return self.text_result.get_text().lower().strip()
 
     def get_file_name(self):
-        return self.file_name.get_text()
+        return self.file_name.get_text().lower().strip()

@@ -13,7 +13,7 @@ def test_handler(browser):
     page.wait_for_open()
     page.click_btn_window()
     browser.switch_window(1)
-    actual_window1 = browser.get_title_window().lower().strip()
+    actual_window1 = browser.get_title().lower().strip()
     assert EXCEPT_WINDOW in actual_window1
     actual_elem_window = page.get_text_page()
     assert EXCEPT_WINDOW in actual_elem_window, f'Expected {EXCEPT_WINDOW} is not in {actual_elem_window}'

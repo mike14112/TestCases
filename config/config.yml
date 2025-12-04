@@ -3,6 +3,7 @@ dev:
   fast_pull_frequency: 0.1
   screen_size: "window-size=1920x1080"
   headless: '--headless'
+  no_sandbox: '--no-sandbox'
   basic_auth: "the-internet.herokuapp.com/basic_auth"
   alert_basic: "https://the-internet.herokuapp.com/javascript_alerts"
   context_url: 'https://the-internet.herokuapp.com/context_menu'

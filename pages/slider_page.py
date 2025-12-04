@@ -22,11 +22,10 @@ class SliderPage(BasePage):
         self.slider_res = Label(self.browser, locator=self.LOC_SLIDER_RES, description='slider res')
 
     def move_to_slider(self, number, number2):
-        current_value = random.randint(number, number2)
+        target_value = random.randint(number, number2)
 
-        for _ in range(current_value):
-            current = self.slider_res.get_text()
-            int(current)
+        for _ in range(target_value):
+            current = int(self.slider_res.get_text())
             self.actions.key_right(self.slider_element)
             if current == 0:
                 self.actions.key_left(self.slider_element)

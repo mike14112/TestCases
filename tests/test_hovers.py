@@ -17,7 +17,7 @@ def test_hovers(browser):
     page.wait_for_open()
     page.hover_user(1)
     actual_user1_text = page.get_user_info(1)
-    assert EXCEPTED_USER1 in actual_user1_text, f'Expected:  {EXCEPTED_USER1} not in Actual:{actual_user1_text}'
+    assert actual_user1_text.endswith(EXCEPTED_USER1), f'Expected:  {EXCEPTED_USER1} not in Actual:{actual_user1_text}'
     page.open_user_link(1)
     actual_user_link = browser.get_url()
     assert actual_user_link.endswith(

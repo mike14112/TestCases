@@ -21,8 +21,8 @@ class HoversPage(BasePage):
 
     def hover_user(self, index):
         loq_user = self.LOC_USER_ELEM.format(index)
-        elem = WebElement(self.browser, loq_user, description=f'main img  ->  user number{index}')
-        self.actions.move_to_element(elem.wait_for_visibility())
+        elem = WebElement(self.browser, loq_user, description=f' main img  ->  user number{index}')
+        self.actions.move_to_element(elem)
 
     def get_user_info(self, index):
         loq_user_text = self.LOC_USER_TEXT.format(index)

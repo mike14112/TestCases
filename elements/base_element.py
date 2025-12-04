@@ -62,9 +62,9 @@ class BaseElement:
         return self.browser.driver.execute_script('return arguments[0].click();', element)
 
     def scroll_to(self):
-        element = self.wait_for_presence()
         Logger.info(f'self.description: {self.description}')
-        return self.browser.driver.execute_script('return arguments[0].scrollIntoView();', element)
+        return self.browser.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);",
+                                                  self.wait_for_visibility())
 
     def send_keys(self, keys):
         element = self.wait_for_presence()
@@ -74,13 +74,12 @@ class BaseElement:
     def get_attribute(self, attribute):
         element = self.wait_for_presence()
         Logger.info(f'self.description: {self.description}')
-        element.get_attribute(attribute)
+        return element.get_attribute(attribute)
 
     def get_property(self, attribute):
-
         element = self.wait_for_presence()
         Logger.info(f'self.description: {self.description}')
-        return element.get_attribute(attribute)
+        return element.get_property(attribute)
 
     def is_exists(self):
         try:
