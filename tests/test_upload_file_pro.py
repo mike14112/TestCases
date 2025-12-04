@@ -1,4 +1,5 @@
 import os
+import sys
 from pathlib import Path
 
 import pytest
@@ -13,7 +14,17 @@ EXCEPT_FILE_NAME = 'f1'.lower().strip()
 FILE_PATH = str(Path(__file__).resolve().parents[1] / "assets" / "f1.jpg")
 
 
-@pytest.mark.skipif('DISPLAY' not in os.environ, reason="Нет графического дисплея (Docker)")
+def can_run_gui_tests():
+    if sys.platform.startswith("linux"):
+        return "DISPLAY" in os.environ and bool(os.environ["DISPLAY"])
+    else:
+        return True
+
+
+is_skip_test =  not can_run_gui_tests()
+
+
+@pytest.mark.skipif(is_skip_test, reason="Нет графического дисплея (Docker)")
 def test_upload_pro(browser):
     page = UploadPagePro(browser)
     browser.get(config.get('upload_url'))

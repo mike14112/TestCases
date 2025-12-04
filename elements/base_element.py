@@ -52,9 +52,9 @@ class BaseElement:
         return element.text
 
     def click(self):
-        elements = self.wait_for_presence()
+        element = self.wait_for_visibility()
         Logger.info(f'self.description: {self.description}')
-        elements.click()
+        element.click()
 
     def js_click(self):
         element = self.wait_for_presence()
