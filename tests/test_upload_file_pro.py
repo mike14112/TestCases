@@ -14,14 +14,11 @@ EXCEPT_FILE_NAME = 'f1'.lower().strip()
 FILE_PATH = str(Path(__file__).resolve().parents[1] / "assets" / "f1.jpg")
 
 
-def can_run_gui_tests():
-    if sys.platform.startswith("linux"):
-        return "DISPLAY" in os.environ and bool(os.environ["DISPLAY"])
-    else:
-        return True
+def is_run_gui_tests():
+        return sys.platform.startswith("linux") and bool(os.environ.get("DISPLAY"))
 
 
-is_skip_test =  not can_run_gui_tests()
+is_skip_test = not is_run_gui_tests()
 
 
 @pytest.mark.skipif(is_skip_test, reason="Нет графического дисплея (Docker)")
